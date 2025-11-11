@@ -1,0 +1,258 @@
+* {
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+  border-radius: 0;
+  border: none;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
+}
+
+window#waybar {
+  background: alpha(@base00, 0.7);
+  padding: 3px 0;
+  border-radius: 6px;
+}
+
+window#waybar.hidden {
+  opacity: 0.98;
+}
+
+#window,
+#custom-updates,
+#tray,
+#network,
+#wireplumber,
+#battery,
+#backlight,
+#clock,
+#memory,
+#cpu,
+#custom-launcher,
+#custom-bluetooth,
+#mpris {
+  font-size: 12px;
+  color: @base00;
+  margin-right: 6px;
+  margin-left: 6px;
+  padding: 3px 7px;
+  border-bottom: 2px solid;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+#workspaces {
+  font-size: 12px;
+  font-weight: 600;
+  color: @base00;
+  padding: 3px 7px;
+  border-bottom: 0px;
+  margin-top: 2px;
+  margin-right: 2px;
+  margin-left: 2px;
+  padding: 0;
+}
+
+#workspaces button {
+  color: @base05;
+  border-radius: 0;
+  margin: 3px 1px;
+  min-width: 20px;
+  padding: 0 2px;
+}
+
+#workspaces button:hover {
+  background: @base0A;
+  color: @base00;
+}
+
+#workspaces button.active {
+  background: @base0A;
+  color: @base00;
+  border-bottom-color: @base0C;
+}
+
+#workspaces button.focused {
+  background: @base0A;
+  color: @base00;
+  border-bottom-color: @base0C;
+}
+
+.modules-center #workspaces button.urgent {
+  background: @base08;
+  color: @base00;
+}
+
+#window {
+  color: @base00;
+  background: @base0D;
+  border-bottom-color: @base0C;
+}
+
+window#waybar.empty #window {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: transparent;
+  border-bottom: none;
+}
+
+/* ======================================================== */
+/* Network */
+/* ======================================================== */
+#network {
+  color: @base09;
+  border-bottom-color: @base09;
+}
+
+#network.disconnected {
+  color: @base08;
+  border-bottom-color: @base08;
+}
+
+/* ======================================================== */
+/* Audio / Wireplumber */
+/* ======================================================== */
+#wireplumber {
+  color: @base0B;
+  border-bottom-color: @base0B;
+}
+
+#wireplumber.muted {
+  color: @base08;
+  border-bottom-color: @base08;
+}
+
+/* ======================================================== */
+/* CPU */
+/* ======================================================== */
+#cpu {
+  color: @base0A;
+  border-bottom-color: @base0A;
+}
+
+/* ======================================================== */
+/* Memory */
+/* ======================================================== */
+#memory {
+  color: @base0B;
+  border-bottom-color: @base0B;
+}
+
+/* ======================================================== */
+/* Backlight */
+/* ======================================================== */
+#backlight {
+  color: @base0E;
+  border-bottom-color: @base0E;
+}
+
+/* ======================================================== */
+/* Battery */
+/* ======================================================== */
+#battery {
+  color: @base0A;
+  border-bottom-color: @base0A;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @base0A;
+  border-bottom-color: @base0A;
+}
+
+#battery.critical:not(.charging) {
+  color: @base08;
+  border-bottom-color: @base08;
+}
+
+/* ======================================================== */
+/* Clock */
+/* ======================================================== */
+#clock {
+  color: @base0C;
+  border-bottom-color: @base0C;
+}
+
+/* ======================================================== */
+/* Tray */
+/* ======================================================== */
+#tray {
+  padding: 3px 7px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-bottom-color: @base05;
+}
+
+/* ======================================================== */
+/* Launcher */
+/* ======================================================== */
+#custom-launcher {
+  color: @base0A;
+  border-bottom-color: @base0A;
+  font-size: 12px;
+}
+
+/* ======================================================== */
+/* Bluetooth */
+/* ======================================================== */
+#custom-bluetooth {
+  color: @base0D;
+  border-bottom-color: @base0D;
+}
+
+/* ======================================================== */
+/* Updates (if used) */
+/* ======================================================== */
+#custom-updates {
+  color: @base0A;
+  border-bottom-color: @base0A;
+}
+
+/* ======================================================== */
+/* Media Player (MPRIS) */
+/* ======================================================== */
+#mpris {
+  color: @base0B;
+  border-bottom-color: @base0B;
+}
+
+#mpris:hover {
+  color: @base0A;
+  border-bottom-color: @base0A;
+}
+
+/* ======================================================== */
+/* Taskbar */
+/* ======================================================== */
+#taskbar {
+  background: transparent;
+  padding: 0;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-bottom: none;
+}
+
+#taskbar button {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 2px 1px;
+  padding: 2px 2px;
+  color: @base05;
+  border-bottom: 2px solid @base03;
+  min-width: 14px;
+}
+
+#taskbar button.active {
+  border-bottom-color: @base0A;
+}
+
+#taskbar button:hover {
+  border-bottom-color: @base09;
+}
+
+#taskbar button.urgent {
+  border-bottom-color: @base08;
+}
