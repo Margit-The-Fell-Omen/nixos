@@ -2,26 +2,26 @@
     description = "Deathlesz' NixOS";
 
     outputs = inputs @ {self, ...}: let
-        # hard-coded for now
+        # NOTE: hard-coded for now
         system = "x86_64-linux";
 
         pkgs = import inputs.nixpkgs {
             inherit system;
 
             config = {allowUnfree = true;};
+            overlays = [inputs.nix-firefox-addons.overlays.default];
         };
 
         pkgs-stable = import inputs.nixpkgs-stable {
             inherit system;
 
             config = {allowUnfree = true;};
+            overlays = [inputs.nix-firefox-addons.overlays.default];
         };
 
         lib = inputs.nixpkgs.lib;
         libM = lib // import ./lib {lib = lib;};
 
-        # a list of directories inside of `./hosts`
-        #                      not null          maps { entryName = "directory", entryName2 = "file" } to [ entryName null ]
         hosts = lib.filter (x: x != null) (lib.mapAttrsToList
         (name: value:
             if (value == "directory")
@@ -68,6 +68,16 @@
             };
         })
         hosts);
+
+        devShells."${system}".default = pkgs.mkShell {
+            packages = with pkgs; [
+                nixd
+                inputs.alejandra.defaultPackage.${system}
+                zsh
+            ];
+
+            shellHook = ''echo Entering DevShell; exec zsh'';
+        };
     };
 
     inputs = {
@@ -89,5 +99,6 @@
             url = "github:nix-community/stylix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
     };
 }

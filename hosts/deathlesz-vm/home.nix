@@ -48,8 +48,8 @@
                 #     package = pkgs.twitter-color-emoji;
                 #   };
                 # };
-                stylix.enable = true;
-                stylix.theme = "everforest-medium";
+                #
+                # stylix.theme = "nord";
             };
 
             misc.enable = true;

@@ -11,9 +11,10 @@
     };
 
     config = lib.mkIf config.userSettings.shells.zsh.enable {
-        home.packages = with pkgs; [
+        home.packages = lib.optionals config.programs.fzf.enable (with pkgs; [
             zsh-fzf-tab
-        ];
+        ]);
+
         programs.zsh = {
             enable = true;
             enableCompletion = true;
@@ -37,9 +38,13 @@
             initContent = let
                 # HACK: a workaround to load `fzf-tab` before `zsh-autosuggestions` and `zsh-syntax-highlighting`
                 # but after `compinit` (order 570)
-                beforeAutosuggestions = lib.mkOrder 580 ''
-                    source "${pkgs.zsh-fzf-tab.outPath}/share/fzf-tab/fzf-tab.plugin.zsh"
-                '';
+                beforeAutosuggestions =
+                    if config.programs.fzf.enable
+                    then
+                        (lib.mkOrder 580 ''
+                            source "${pkgs.zsh-fzf-tab.outPath}/share/fzf-tab/fzf-tab.plugin.zsh"
+                        '')
+                    else '''';
                 normal = lib.concatStringsSep "\n" [
                     "zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'"
                     "zstyle ':completion:*' list-colors \"\${(s.:.)LS_COLORS}\""
@@ -65,47 +70,5 @@
 
         # enable zsh integrations for all available applications
         home.shell.enableZshIntegration = true;
-        # it adds too many aliases i don't use
-        programs.eza.enableZshIntegration = lib.mkDefault false;
-
-        programs.starship = {
-            enable = true;
-            settings = {
-                add_newline = true;
-
-                format = "$directory $git_branch$git_status\n$character";
-                right_format = "$cmd_duration $time";
-
-                directory = {
-                    truncation_length = 999; # effectively disable truncation
-                    truncate_to_repo = false;
-                    style = "bold blue";
-                    read_only = "";
-                };
-
-                git_branch = {
-                    format = "[$symbol$branch(:$remote_branch)]($style)";
-                    symbol = "";
-                    style = "bold grey";
-                };
-
-                git_status = {
-                    format = "[$modified](bold grey) [$ahead_behind]($style)";
-                    style = "bold cyan";
-                };
-
-                cmd_duration = {
-                    min_time = 5000;
-                    show_milliseconds = true;
-                    format = "[$duration]($style)";
-                };
-
-                time = {
-                    format = "[$time]($style)";
-                    time_format = "%H:%M:%S";
-                    disabled = false;
-                };
-            };
-        };
     };
 }

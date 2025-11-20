@@ -235,6 +235,7 @@
                     # lock
                     "$mainMod, L, exec, hyprlock"
 
+                    # TODO: add lib.mkIf on ncmpcpp/cava
                     # music
                     "$mainMod, N, exec, $terminal --class ncmpcpp -- ncmpcpp"
                     "$mainMod SHIFT, N, exec, $terminal --class cava -- cava"
@@ -246,6 +247,7 @@
                     "$mainMod, mouse:273, resizewindow"
                 ];
 
+                # TODO: add lib.mkIf on wpctl & brightnessctl
                 bindel = [
                     # laptop multimedia keys for volume and LCD brightness
                     ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
@@ -256,6 +258,7 @@
                     ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
                 ];
 
+                # TODO: add lib.mkIf on playerctl
                 bindl = [
                     ", XF86AudioNext, exec, playerctl next"
                     ", XF86AudioPause, exec, playerctl play-pause"

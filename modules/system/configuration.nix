@@ -9,15 +9,29 @@
     # generally default values, can be changed by specific hosts
     config = {
         # needed to use all this
-        nix.settings.experimental-features = ["nix-command" "flakes"];
+        nix = {
+            settings = {
+                experimental-features = ["nix-command" "flakes"];
 
-        nix.gc = {
-            automatic = true;
-            dates = "weekly";
-            options = "--delete-older-than 30d";
+                trusted-users = ["@wheel"];
+                # try default cache server first
+                # otherwise, try to pull from nix-community cachix server
+                substituters = [
+                    "https://cache.nixos.org"
+                    "https://nix-community.cachix.org"
+                ];
+                trusted-public-keys = [
+                    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+                ];
+            };
+
+            gc = lib.mkIf (! config.programs.nh.enable) {
+                automatic = true;
+                dates = "weekly";
+                options = "--delete-older-than 30d";
+            };
         };
 
-        # TODO: add alejandra
         environment.systemPackages = with pkgs; [
             git
 
@@ -30,8 +44,15 @@
             curl
             wget
 
-            inputs.alejandra.defaultPackage.${system}
+            ntfs3g
         ];
+
+        programs.nh = {
+            enable = true;
+            clean.enable = true;
+            clean.extraArgs = "--keep 10 --keep-since 7d --optimise";
+            flake = "/home/deathlesz/dotfiles";
+        };
 
         time.timeZone = "Europe/Minsk";
         services.chrony = {
@@ -81,31 +102,9 @@
             };
 
             # use systemd
-            initrd = {
-                systemd.enable = true;
-                # quiet boot
-                verbose = false;
-            };
-
-            # quiet boot
-            kernelParams = [
-                "quiet"
-                "splash"
-                "loglevel=3"
-                "systemd.show_status=false"
-                "udev.log_level=3"
-                "udev.log_priority=3"
-            ];
-
-            # renders splash and picks up screen resolution ASAP
-            plymouth.enable = true;
+            initrd.systemd.enable = true;
         };
 
         networking.networkmanager.enable = true;
-        # FIXME: move somewhere
-        services.openssh.enable = true;
-
-        # i don't use nano, so i don't need it
-        programs.nano.enable = lib.mkForce false;
     };
 }

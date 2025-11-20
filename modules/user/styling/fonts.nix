@@ -5,47 +5,55 @@
     pkgs,
     inputs,
     ...
-}: {
+}: let
+    toList = x:
+        if builtins.isList x
+        then x
+        else [x];
+
+    fontBlock = path: opt: {
+        name = lib.mkOption {
+            type = lib.types.oneOf [
+                lib.types.str
+                (lib.types.listOf lib.types.str)
+            ];
+            default = opt.defaultName;
+            description = "Font name(s) for ${path}";
+        };
+
+        package = lib.mkOption {
+            type = lib.types.oneOf [
+                lib.types.package
+                (lib.types.listOf lib.types.package)
+            ];
+            default = opt.defaultPackage;
+            description = "Package(s) providing font(s) for ${path}";
+        };
+    };
+
+    hostFonts = osConfig.hostSettings.styling.fonts;
+in {
     options = {
         userSettings = {
-            styling.font.defaultSerif = {
-                name = lib.mkOption {
-                    type = lib.types.listOf lib.types.str;
-                    description = "Default serif font to use";
-                    default = ["Fira Sans"];
+            styling.fonts = {
+                serif = fontBlock "serif" {
+                    defaultName = hostFonts.serif.name;
+                    defaultPackage = hostFonts.serif.package;
                 };
-                package = lib.mkPackageOption pkgs "serif font" {
-                    default = ["fira-sans"];
+
+                sansSerif = fontBlock "sans-serif" {
+                    defaultName = hostFonts.sansSerif.name;
+                    defaultPackage = hostFonts.sansSerif.package;
                 };
-            };
-            styling.font.defaultSansSerif = {
-                name = lib.mkOption {
-                    type = lib.types.listOf lib.types.str;
-                    description = "Default sans-serif font to use";
-                    default = ["Fira Sans"];
+
+                monospace = fontBlock "monospace" {
+                    defaultName = hostFonts.monospace.name;
+                    defaultPackage = hostFonts.monospace.package;
                 };
-                package = lib.mkPackageOption pkgs "sans-serif font" {
-                    default = ["fira-sans"];
-                };
-            };
-            styling.font.defaultMonospace = {
-                name = lib.mkOption {
-                    type = lib.types.listOf lib.types.str;
-                    description = "Default monospace font to use";
-                    default = ["JetBrainsMono Nerd Font"];
-                };
-                package = lib.mkPackageOption pkgs "monospace font" {
-                    default = ["nerd-fonts" "jetbrains-mono"];
-                };
-            };
-            styling.font.defaultEmoji = {
-                name = lib.mkOption {
-                    type = lib.types.listOf lib.types.str;
-                    description = "Default emoji font to use";
-                    default = ["Twitter Color Emoji"];
-                };
-                package = lib.mkPackageOption pkgs "emoji font" {
-                    default = ["twitter-color-emoji"];
+
+                emoji = fontBlock "emoji" {
+                    defaultName = hostFonts.emoji.name;
+                    defaultPackage = hostFonts.emoji.package;
                 };
             };
         };
@@ -55,18 +63,22 @@
         fonts.fontconfig = {
             enable = true;
             defaultFonts = {
-                serif = config.userSettings.styling.font.defaultSerif.name;
-                sansSerif = config.userSettings.styling.font.defaultSansSerif.name;
-                monospace = config.userSettings.styling.font.defaultMonospace.name;
-                emoji = config.userSettings.styling.font.defaultEmoji.name;
+                serif = toList config.userSettings.styling.fonts.serif.name;
+                sansSerif = toList config.userSettings.styling.fonts.sansSerif.name;
+                monospace = toList config.userSettings.styling.fonts.monospace.name;
+                emoji = toList config.userSettings.styling.fonts.emoji.name;
             };
         };
 
-        home.packages = with pkgs; [
-            config.userSettings.styling.font.defaultSerif.package
-            config.userSettings.styling.font.defaultSansSerif.package
-            config.userSettings.styling.font.defaultMonospace.package
-            config.userSettings.styling.font.defaultEmoji.package
+        home.packages = lib.concatLists [
+            (toList
+                config.userSettings.styling.fonts.serif.package)
+            (toList
+                config.userSettings.styling.fonts.sansSerif.package)
+            (toList
+                config.userSettings.styling.fonts.monospace.package)
+            (toList
+                config.userSettings.styling.fonts.emoji.package)
         ];
     };
 }

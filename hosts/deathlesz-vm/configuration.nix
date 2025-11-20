@@ -15,9 +15,20 @@
 
             pipewire.enable = true;
             hyprland.enable = true;
+            sddm.enable = true;
 
-            stylix.enable = true;
-            stylix.theme = "everforest-medium";
+            styling = {
+                enable = true;
+
+                theme = "everforest-medium";
+
+                plymouth.enable = true;
+                # FIXME: maybe it doesn't work on VM?
+                #
+                plymouth.theme = "ecorp-glitch";
+
+                grub.theme = "cybergrub-2077";
+            };
         };
 
         system.stateVersion = "25.05";

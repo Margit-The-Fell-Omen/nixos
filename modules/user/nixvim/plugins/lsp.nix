@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    nixvimLib,
     pkgs,
     inputs,
     ...
@@ -63,19 +64,19 @@
                 {
                     mode = "n";
                     key = "<leader>d";
-                    action = {__raw = "vim.diagnostic.open_float";};
+                    action = nixvimLib.nixvim.mkRaw "vim.diagnostic.open_float";
                     options.desc = "Show buffer [d]iagnostics";
                 }
                 {
                     mode = "n";
                     key = "<leader>[d";
-                    action = {__raw = "function() vim.diagnostic.jump({ count = -1, float = true }) end";};
+                    action = nixvimLib.nixvim.mkRaw "function() vim.diagnostic.jump({ count = -1, float = true }) end";
                     options.desc = "Go to previous [d]iagnostic";
                 }
                 {
                     mode = "n";
                     key = "<leader>]d";
-                    action = {__raw = "function() vim.diagnostic.jump({ count = 1, float = true }) end";};
+                    action = nixvimLib.nixvim.mkRaw "function() vim.diagnostic.jump({ count = 1, float = true }) end";
                     options.desc = "Go to next [d]iagnostic";
                 }
                 {

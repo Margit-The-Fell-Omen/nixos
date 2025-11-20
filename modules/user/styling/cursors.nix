@@ -13,13 +13,8 @@
                     type = lib.types.str;
                     description = "Cursor theme to use";
                     default =
-                        if (config.userSettings.styling.stylix.enable)
-                        then
-                            (
-                                if (config.stylix.polarity == "light")
-                                then "Quintom_Ink"
-                                else "Quintom_Snow"
-                            )
+                        if (config.stylix.polarity == "light")
+                        then "Quintom_Ink"
                         else "Quintom_Snow";
                 };
                 package = lib.mkPackageOption pkgs "cursor" {

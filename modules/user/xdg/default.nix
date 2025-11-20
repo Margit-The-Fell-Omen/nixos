@@ -11,20 +11,23 @@
     };
 
     config = lib.mkIf config.userSettings.xdg.enable {
-        xdg.enable = true;
-        xdg.userDirs = {
+        xdg = {
             enable = true;
+            mimeApps.enable = true;
 
-            createDirectories = true;
-            desktop = null;
-            documents = null;
-            download = "${config.home.homeDirectory}/downloads";
-            music = "${config.home.homeDirectory}/media/music";
-            pictures = "${config.home.homeDirectory}/media/pictures";
-            publicShare = null;
-            templates = null;
-            videos = "${config.home.homeDirectory}/media/videos";
+            userDirs = {
+                enable = true;
+
+                createDirectories = true;
+                desktop = "${config.home.homeDirectory}/desktop";
+                documents = "${config.home.homeDirectory}/documents";
+                download = "${config.home.homeDirectory}/downloads";
+                music = "${config.home.homeDirectory}/media/music";
+                pictures = "${config.home.homeDirectory}/media/pictures";
+                publicShare = null;
+                templates = null;
+                videos = "${config.home.homeDirectory}/media/videos";
+            };
         };
-        xdg.mimeApps.enable = true;
     };
 }

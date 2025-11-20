@@ -14,7 +14,7 @@
             value = {imports = [./home.nix ../../modules/user];};
         })
         config.hostSettings.users);
-        # do not change, doesn't affect anything
+
         system.stateVersion = "25.05";
     };
 }

@@ -14,9 +14,14 @@
         b = c."${color}-rgb-b";
     in
         mkLiteral "rgba(${r}, ${g}, ${b}, 100%)";
+
+    toList = x:
+        if builtins.isList x
+        then x
+        else [x];
     font = {
-        name = lib.elemAt config.userSettings.styling.font.defaultMonospace.name 0;
-        size = config.userSettings.styling.font.defaultMonospace.size;
+        name = builtins.head (toList config.userSettings.styling.fonts.monospace.name);
+        size = builtins.head (toList config.userSettings.styling.fonts.monospace.size);
     };
 in {
     config = libM.requireHostSettings osConfig {
