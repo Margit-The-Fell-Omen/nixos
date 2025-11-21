@@ -64,8 +64,11 @@
                     "bindkey '^p' history-search-backward"
                     "bindkey '^n' history-search-forward"
                 ];
+                after = lib.mkAfter ''
+                    fastfetch
+                '';
             in
-                lib.mkMerge [beforeAutosuggestions normal];
+                lib.mkMerge [beforeAutosuggestions normal after];
         };
 
         # enable zsh integrations for all available applications

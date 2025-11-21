@@ -1,11 +1,11 @@
 {
     config,
+    osConfig,
     lib,
     libM,
     pkgs,
-    osConfig,
     ...
-} @ inputs: {
+}: {
     options = {
         userSettings = {
             hyprland.enable = lib.mkEnableOption "Hyprland";
@@ -27,28 +27,14 @@
             };
         };
 
-        home.packages = with pkgs; [
-            wl-clipboard
-            grim
-            slurp
-        ];
-
         services = {
             hyprpaper.enable = true;
-            mako = {
-                enable = true;
-                settings = {
-                    default-timeout = 5 * 1000;
-                    anchor = "bottom-right";
-                    outer-margin = "10,0";
-                };
-            };
         };
 
-        programs.rofi = {
-            enable = true;
-        };
-        home.file."${config.home.homeDirectory}/.config/rofi/launcher.rasi".source = ./launcher.rasi;
+        home.packages = with pkgs; [
+            grimblast
+            satty
+        ];
 
         home.sessionVariables =
             {

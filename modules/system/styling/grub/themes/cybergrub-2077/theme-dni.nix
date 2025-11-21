@@ -1,5 +1,5 @@
 {
-    stdenv,
+    stdenvNoCC,
     lib,
     fetchFromGitHub,
     logo ? "samurai",
@@ -16,7 +16,7 @@
     validLogos = map (file: lib.removeSuffix ".png" file) (builtins.attrNames (lib.filterAttrs (name: type: type != "directory" && lib.hasSuffix ".png" name) (builtins.readDir "${src}/img/logos")));
 in
     assert lib.assertOneOf "logo" logo validLogos;
-        stdenv.mkDerivation {
+        stdenvNoCC.mkDerivation {
             inherit version;
             inherit src;
 

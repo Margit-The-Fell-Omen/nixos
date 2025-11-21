@@ -20,7 +20,7 @@
             styling = {
                 enable = true;
 
-                theme = "everforest-medium";
+                theme = "nord";
 
                 plymouth.enable = true;
                 # FIXME: maybe it doesn't work on VM?

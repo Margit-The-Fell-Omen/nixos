@@ -24,10 +24,7 @@
         size = builtins.head (toList config.userSettings.styling.fonts.monospace.size);
     };
 in {
-    config = libM.requireHostSettings osConfig {
-        require = ["hyprland" "graphics"];
-        message = "Hyprland must also be enable on the system level";
-    } (lib.mkIf config.userSettings.hyprland.enable {
+    config = lib.mkIf config.userSettings.hyprland.enable {
         programs.rofi = {
             enable = true;
             font = "${font.name} 12";
@@ -85,5 +82,5 @@ in {
         # NOTE: custom implementation is needed due to stylix putting config for elements
         # and some opacity stuff which breaks everything
         stylix.targets.rofi.enable = false;
-    });
+    };
 }

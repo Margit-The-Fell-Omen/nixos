@@ -5,10 +5,7 @@
     libM,
     ...
 }: {
-    config = libM.requireHostSettings osConfig {
-        require = ["hyprland" "graphics"];
-        message = "Hyprland must also be enable on the system level";
-    } (lib.mkIf config.userSettings.hyprland.enable {
+    config = lib.mkIf config.userSettings.hyprland.enable {
         programs.waybar = {
             enable = true;
 
@@ -133,7 +130,7 @@
                     };
 
                     "custom/launcher" = {
-                        format = " ";
+                        format = " ";
                     };
 
                     "custom/bluetooth" = {
@@ -207,5 +204,5 @@
         };
 
         stylix.targets.waybar.addCss = false;
-    });
+    };
 }

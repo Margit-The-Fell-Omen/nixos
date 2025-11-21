@@ -24,9 +24,10 @@
                 ];
 
                 general = {
-                    gaps_in = 10;
-                    gaps_out = 10;
-                    border_size = 2;
+                    gaps_in = 5;
+                    gaps_out = 8;
+                    border_size = 1;
+                    resize_on_border = true;
 
                     allow_tearing = false;
 
@@ -221,21 +222,20 @@
 
                     # screenshot
                     # just select
-                    ", PRINT, exec, ~/.config/hypr/screen.sh"
+                    ", PRINT, exec, grimblast -n -f copy area"
 
                     # do stuff
-                    "SHIFT, PRINT, exec, grim -g \"$(slurp -o -b ff0000 -c e78a4eee)\" -t ppm - | satty --filename - --output-filename ~/satty-$(date '+%Y%m%d-%H:%M:%S').png --actions-on-enter save-to-clipboard,exit"
+                    "SHIFT, PRINT, exec, GRIMBLAST_EDITOR=\"satty --actions-on-enter save-to-clipboard,exit --filename \" grimblast -f edit area"
 
                     # full screen
-                    "ALT, PRINT, exec, grim - | wl-copy"
+                    "ALT, PRINT, exec, grimblast -n -f copy screen"
 
                     # bluetooth
-                    "$mainMod, B, exec, ~/.config/hypr/rofi-bluetooth.sh"
+                    # "$mainMod, B, exec, ~/.config/hypr/rofi-bluetooth.sh"
 
                     # lock
                     "$mainMod, L, exec, hyprlock"
 
-                    # TODO: add lib.mkIf on ncmpcpp/cava
                     # music
                     "$mainMod, N, exec, $terminal --class ncmpcpp -- ncmpcpp"
                     "$mainMod SHIFT, N, exec, $terminal --class cava -- cava"
@@ -247,7 +247,6 @@
                     "$mainMod, mouse:273, resizewindow"
                 ];
 
-                # TODO: add lib.mkIf on wpctl & brightnessctl
                 bindel = [
                     # laptop multimedia keys for volume and LCD brightness
                     ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
@@ -258,7 +257,6 @@
                     ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
                 ];
 
-                # TODO: add lib.mkIf on playerctl
                 bindl = [
                     ", XF86AudioNext, exec, playerctl next"
                     ", XF86AudioPause, exec, playerctl play-pause"

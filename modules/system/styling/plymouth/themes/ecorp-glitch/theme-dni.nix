@@ -1,10 +1,10 @@
 {
-    stdenv,
+    stdenvNoCC,
     lib,
     fetchFromGitHub,
     ...
 }:
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation rec {
     pname = "ecorp-glitch-plymouth-theme";
     version = "0bdfe0da437d6c001a31b280bc212b5c0dd3ef67";
 
