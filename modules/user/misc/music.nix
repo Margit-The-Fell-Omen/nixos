@@ -86,6 +86,8 @@ in {
                 auto_update "yes"
             '';
         };
+        # is needed to use `playerctl` and for it to show on waybar
+        services.mpd-mpris.enable = true;
 
         home.sessionVariables = {
             MPD_HOST = "${localState}/socket";
