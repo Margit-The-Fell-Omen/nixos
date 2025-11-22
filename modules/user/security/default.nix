@@ -29,8 +29,8 @@
                 enable = true;
                 enableSshSupport = false;
                 pinentry = {
-                    package = pkgs.pinentry-curses;
-                    program = "pinentry-curses";
+                    package = pkgs.pinentry-qt;
+                    program = "pinentry-qt";
                 };
             };
         };

@@ -15,6 +15,7 @@ in {
 
     config = lib.mkIf config.userSettings.misc.enable {
         programs = {
+            feh.enable = true;
             btop = {
                 enable = true;
                 # needed for btop to show nVidia & AMD GPUs
