@@ -23,6 +23,8 @@
             graphics.amd.enable = true;
 
             # Configure various laptop-related features, like nVidia Prime
+            # If you enable this and you have a dual GPU setup with nVidia
+            # You must set `hardware.nvidia.prime.{nvidiaBusId,amdgpuBusId,intelBusId}` to appropriate values
             laptop.enable = true;
 
             # Enable Bluetooth support

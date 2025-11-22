@@ -229,12 +229,14 @@
                     # screenshot
                     # just select
                     ", PRINT, exec, grimblast -n -f copy area"
+                    "$mainMod, PRINT, exec, grimblast -n -f save area ~/\${date '+%Y-%m-%d_%H:%M:%S'}.png"
 
                     # do stuff
                     "SHIFT, PRINT, exec, GRIMBLAST_EDITOR=\"satty --actions-on-enter save-to-clipboard,exit --filename \" grimblast -f edit area"
 
                     # full screen
                     "ALT, PRINT, exec, grimblast -n -f copy screen"
+                    "$mainMod + ALT, PRINT, exec, grimblast -n -f save screen ~/\$(date '+%Y-%m-%d_%H:%M:%S').png"
 
                     # bluetooth
                     # "$mainMod, B, exec, ~/.config/hypr/rofi-bluetooth.sh"
