@@ -125,8 +125,8 @@
                     bind-key -T copy-move-vi C-v send-keys -X rectangle toggle
                     bind-key -T copy-move-vi y send-key -X copy-selection-and-cancel
 
-                    bind \\ split-window -h -c "''${pane_current_path}"
-                    bind - split-window -v -c "''${pane_current_path}"
+                    bind \\ split-window -h -c "#{pane_current_path}"
+                    bind - split-window -v -c "#{pane_current_path}"
                     unbind '"'
                     unbind %
                 '';
@@ -136,8 +136,8 @@
                 settings = {
                     add_newline = true;
 
-                    format = "$directory $git_branch$git_status\n$character";
-                    right_format = "$cmd_duration $time";
+                    format = "$directory$git_branch$git_status\n$nix_shell$character";
+                    right_format = "$cmd_duration$time";
 
                     directory = {
                         truncation_length = 999; # effectively disable truncation
@@ -155,6 +155,10 @@
                     git_status = {
                         format = "[$modified](bold grey) [$ahead_behind]($style)";
                         style = "bold cyan";
+                    };
+
+                    nix_shell = {
+                        format = "[\\(shell\\)]($style) ";
                     };
 
                     cmd_duration = {

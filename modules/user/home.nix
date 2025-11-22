@@ -1,4 +1,11 @@
-{config, ...}: {
-    # let home-manager manage itself
-    config.programs.home-manager.enable = true;
+{
+    config,
+    lib,
+    pkgs,
+    ...
+}: {
+    config = {
+        # let home-manager manage itself
+        programs.home-manager.enable = true;
+    };
 }

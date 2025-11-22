@@ -4,7 +4,9 @@
     pkgs,
     inputs,
     ...
-}: {
+}: let
+    gpgKeyId = "F2C9CA3B08EFB236";
+in {
     config = {
         userSettings = {
             xdg.enable = true;
@@ -21,6 +23,7 @@
             terminals.defaultTerminal = "kitty";
             terminals.kitty.enable = true;
 
+            security.enable = true;
             git.enable = true;
 
             styling = {
@@ -55,10 +58,15 @@
             misc.enable = true;
         };
 
-        programs = {
-            git.settings.user = {
-                name = "deathlesz";
+        programs.git = {
+            settings.user = {
+                name = "Deathlesz";
                 email = "deathless.mcd@gmail.com";
+            };
+
+            signing = {
+                key = gpgKeyId;
+                signByDefault = true;
             };
         };
 
@@ -66,6 +74,15 @@
             monitor = [
                 "eDP-1, 1920x1080@360.01, 0x0, 1"
             ];
+        };
+
+        programs.mullvad-vpn = {
+            enable = true;
+            package = null;
+            settings = {
+                autoConnect = true;
+                startMinimized = true;
+            };
         };
 
         home.shellAliases = {

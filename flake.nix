@@ -22,7 +22,7 @@
         lib = inputs.nixpkgs.lib;
         libM = lib // import ./lib {lib = lib;};
 
-        hosts = lib.filter (x: x != null) (lib.mapAttrsToList
+        hosts = lib.filter (x: x != null && x != "__TEMPLATE") (lib.mapAttrsToList
         (name: value:
             if (value == "directory")
             then name
@@ -73,10 +73,9 @@
             packages = with pkgs; [
                 nixd
                 inputs.alejandra.defaultPackage.${system}
+
                 zsh
             ];
-
-            shellHook = ''echo Entering DevShell; exec zsh'';
         };
     };
 

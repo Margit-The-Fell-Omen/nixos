@@ -54,6 +54,7 @@
                     enable = true;
                     standalonePlugins = [
                         "oil.nvim"
+                        "nvim-treesitter"
                     ];
                 };
             };

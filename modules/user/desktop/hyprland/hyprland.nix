@@ -21,7 +21,13 @@
                 exec-once = [
                     "waybar"
                     "hyprctl setcursor ${config.userSettings.styling.cursor.name} ${builtins.toString config.userSettings.styling.cursor.size}"
+                    "[workspace 1 silent] firefox"
+                    "[workspace 2 silent] kitty"
                 ];
+
+                # debug = {
+                #     disable_logs = false;
+                # };
 
                 general = {
                     gaps_in = 5;
