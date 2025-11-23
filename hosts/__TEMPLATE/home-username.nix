@@ -83,11 +83,14 @@
 
         # Set monitor configuration for Hyprland
         # You'll probably want this if you're using it
-        wayland.windowManager.hyprland.settings = {
-            monitor = [
-                "eDP-1, 1920x1080@360.01, 0x0, 1"
-            ];
-        };
+        #
+        # Example:
+        # wayland.windowManager.hyprland.settings = {
+        #     monitor = [
+        #         "eDP-1, 1920x1080@360.01, 0x0, 1"
+        #         "HDMI-A-1, 1920x1080@60.00, -1920x0, 1"
+        #     ];
+        # };
 
         # Example Git configuration
         # programs.git = {

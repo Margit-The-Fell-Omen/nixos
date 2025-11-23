@@ -87,7 +87,8 @@ in {
             '';
         };
         # is needed to use `playerctl` and for it to show on waybar
-        services.mpd-mpris.enable = true;
+        # FIXME: waybar is lagging hard because of this (can't find something, idk)
+        services.mpd-mpris.enable = false;
 
         home.sessionVariables = {
             MPD_HOST = "${localState}/socket";

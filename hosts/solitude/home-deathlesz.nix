@@ -70,9 +70,15 @@ in {
             };
         };
 
+        # NOTE: comment if using dual monitors (or add nVidia GPU too?)
+        home.sessionVariables = {
+            AQ_DRM_DEVICES = "/dev/dri/amd-igpu";
+        };
+
         wayland.windowManager.hyprland.settings = {
             monitor = [
                 "eDP-1, 1920x1080@360.01, 0x0, 1"
+                # "HDMI-A-1, 1920x1080@60.00, -1920x0, 1"
             ];
         };
 

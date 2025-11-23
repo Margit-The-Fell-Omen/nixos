@@ -43,10 +43,6 @@
             KERNEL=="card*", KERNELS=="0000:06:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/amd-igpu"
         '';
 
-        environment.sessionVariables = {
-            AQ_DRM_DEVICES = "/dev/dri/amd-igpu";
-        };
-
         services = {
             supergfxd.enable = true;
             asusd = {

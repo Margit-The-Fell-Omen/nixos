@@ -30,7 +30,7 @@
             # Enable Bluetooth support
             bluetooth.enable = true;
 
-            # Enable audio through pipewirte
+            # Enable audio through Pipewire
             pipewire.enable = true;
 
             # Enable host-wide Hyprland settings (is required to enable on per-user basis)
