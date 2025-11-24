@@ -2,8 +2,6 @@
     config,
     lib,
     pkgs,
-    inputs,
-    system,
     ...
 }: {
     # generally default values, can be changed by specific hosts

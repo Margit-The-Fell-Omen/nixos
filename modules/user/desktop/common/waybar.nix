@@ -1,8 +1,6 @@
 {
     config,
-    osConfig,
     lib,
-    libM,
     ...
 }: {
     config = lib.mkIf config.userSettings.hyprland.enable {

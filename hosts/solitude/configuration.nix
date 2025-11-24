@@ -1,9 +1,4 @@
-{
-    config,
-    lib,
-    pkgs,
-    ...
-}: {
+{pkgs, ...}: {
     config = {
         hostSettings = {
             users = ["deathlesz"];

@@ -1,10 +1,4 @@
-{
-    config,
-    lib,
-    pkgs,
-    inputs,
-    ...
-}: let
+{pkgs, ...}: let
     gpgKeyId = "F2C9CA3B08EFB236";
 
     toggleRefreshRate = pkgs.writeShellApplication {
