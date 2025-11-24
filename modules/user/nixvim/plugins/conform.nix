@@ -13,6 +13,7 @@
                 formatters_by_ft = {
                     lua = ["stylua"];
                     rust = ["rustfmt"];
+                    typst = ["typstyle"];
                     nix = ["alejandra"];
                 };
                 format_after_save = {

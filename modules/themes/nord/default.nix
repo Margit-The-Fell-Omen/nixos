@@ -5,8 +5,11 @@
     credits = "?";
     description = "An arctic, north-bluish color palette.";
     polarity = "dark";
-    backgroundUrl = "https://wallpaperaccess.com/full/11356502.png";
-    backgroundSha256 = "sha256-CgiB1EkkTOm67WFN55RZKlmVt4G8TL6Owmy4bs6ERh0=";
+    backgroundUrl = "https://github.com/dxnst/nord-backgrounds/blob/main/avogadr.io/1920x1080/caffeine.png?raw=true";
+    backgroundSha256 = "sha256-Lpcwaa6MDtkO0T1uhjCxoUoU4sNqY7xNm913UXT00hA=";
+    # NOTE: can't see comments with 0.6 opacity in kitty
+    # backgroundUrl = "https://wallpaperaccess.com/full/11356475.png";
+    # backgroundSha256 = "sha256-VtpMqXthdxRDH+lb/KIC/PECwztElc9mSINCmTbiyP4=";
     base00 = "#2E3440";
     base01 = "#3B4252";
     base02 = "#434C5E";

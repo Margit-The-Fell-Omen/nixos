@@ -4,8 +4,10 @@
     author = "Sainnhe Park (https://github.com/sainnhe)";
     description = "Comfortable & pleasant color scheme (originally for Vim)";
     polarity = "dark";
-    backgroundUrl = "https://w.wallhaven.cc/full/83/wallhaven-839ppy.png";
-    backgroundSha256 = "sha256-xtnvDoIs+kKvRXo/L+ifq/q+yWNeqh1EUsaRkmDTtz4=";
+    backgroundUrl = "https://github.com/Apeiros-46B/everforest-walls/blob/main/nature/mist_forest_1.png?raw=true";
+    backgroundSha256 = "sha256-tGudS0BU83wbBEDCBrXWk7arkce8Bf0u+fUE3cTBYZ0=";
+    # backgroundUrl = "https://w.wallhaven.cc/full/83/wallhaven-839ppy.png";
+    # backgroundSha256 = "sha256-xtnvDoIs+kKvRXo/L+ifq/q+yWNeqh1EUsaRkmDTtz4=";
     base00 = "2f383e";
     base01 = "374247";
     base02 = "4a555b";

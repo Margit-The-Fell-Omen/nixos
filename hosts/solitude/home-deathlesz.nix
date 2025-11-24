@@ -92,14 +92,20 @@ in {
             ];
         };
 
-        programs.mullvad-vpn = {
-            enable = true;
-            package = null;
-            settings = {
-                autoConnect = true;
-                startMinimized = true;
+        programs = {
+            mullvad-vpn = {
+                enable = true;
+                package = null;
+                settings = {
+                    autoConnect = true;
+                    startMinimized = true;
+                };
             };
         };
+
+        home.packages = with pkgs; [
+            telegram-desktop
+        ];
 
         home.shellAliases = {
             ls = "eza --color=always";

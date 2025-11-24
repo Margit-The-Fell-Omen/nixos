@@ -2,21 +2,55 @@
     config,
     lib,
     nixvimLib,
-    pkgs,
-    inputs,
     ...
 }: {
     config.programs.nixvim = lib.mkIf config.userSettings.nixvim.enable {
         plugins.lsp = {
             enable = true;
-            servers.nixd = {
-                enable = true;
+            servers = {
+                nixd.enable = true;
+                rust_analyzer = {
+                    enable = true;
+                    settings = {
+                        check.command = "clippy";
+                        checkOnSave = true;
+                    };
+                    # dismiss warnings
+                    installCargo = false;
+                    installRustc = false;
+                    installRustfmt = false;
+                };
+                tinymist = {
+                    enable = true;
+                    settings = {
+                        formatterMode = "typstyle";
+                        exportPdf = "onSave";
+                    };
+                    onAttach.function = ''
+                        vim.keymap.set("n", "<leader>tp", function()
+                        	client:exec_cmd({
+                        		title = "pin",
+                        		command = "tinymist.pinMain",
+                        		arguments = { vim.api.nvim_buf_get_name(0) },
+                        	}, { bufnr = bufnr })
+                        end, { desc = "[T]inymist [P]in", noremap = true })
+
+                        vim.keymap.set("n", "<leader>tu", function()
+                        	client:exec_cmd({
+                        		title = "unpin",
+                        		command = "tinymist.pinMain",
+                        		arguments = { vim.v.null },
+                        	}, { bufnr = bufnr })
+                        end, { desc = "[T]inymist [U]npin", noremap = true })
+                    '';
+                };
             };
         };
         lsp = {
-            servers.nixd = {
-                enable = true;
-                activate = true;
+            servers = {
+                nixd.enable = true;
+                rust_analyzer.enable = true;
+                tinymist.enable = true;
             };
             keymaps = [
                 {

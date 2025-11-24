@@ -2,22 +2,22 @@
     {
         mode = "n";
         key = "<left>";
-        action = "<CMD>echo \\\"Use fucking 'h' to move!\\\"<CR>";
+        action = "<CMD>echo \"Use fucking 'h' to move!\"<CR>";
     }
     {
         mode = "n";
         key = "<right>";
-        action = "<CMD>echo \\\"Use fucking 'l' to move!\\\"<CR>";
+        action = "<CMD>echo \"Use fucking 'l' to move!\"<CR>";
     }
     {
         mode = "n";
         key = "<up>";
-        action = "<CMD>echo \\\"Use fucking 'k' to move!\\\"<CR>";
+        action = "<CMD>echo \"Use fucking 'k' to move!\"<CR>";
     }
     {
         mode = "n";
         key = "<down>";
-        action = "<CMD>echo \\\"Use fucking 'j' to move!\\\"<CR>";
+        action = "<CMD>echo \"Use fucking 'j' to move!\"<CR>";
     }
     {
         mode = "n";
