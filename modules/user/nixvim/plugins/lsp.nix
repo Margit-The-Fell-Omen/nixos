@@ -9,6 +9,11 @@
             enable = true;
             servers = {
                 nixd.enable = true;
+                clangd = {
+                    enable = true;
+                    package = null;
+                    cmd = ["clangd" "--background-index" "--clang-tidy"];
+                };
                 rust_analyzer = {
                     enable = true;
                     settings = {
@@ -51,6 +56,7 @@
                 nixd.enable = true;
                 rust_analyzer.enable = true;
                 tinymist.enable = true;
+                clangd.enable = true;
             };
             keymaps = [
                 {

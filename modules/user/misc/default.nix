@@ -19,7 +19,7 @@
                 # needed for btop to show nVidia & AMD GPUs
                 package = pkgs.btop.override {
                     cudaSupport = osConfig.hostSettings.graphics.nvidia.enable;
-                    rocmSupport = true; # FIXME: for now let it be true forever
+                    rocmSupport = osConfig.hostSettings.graphics.amd.enable;
                 };
                 settings = {
                     theme_background = true;

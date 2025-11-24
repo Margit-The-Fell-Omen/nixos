@@ -15,6 +15,10 @@
                     rust = ["rustfmt"];
                     typst = ["typstyle"];
                     nix = ["alejandra"];
+                    c = ["clang-format"];
+                    h = ["clang-format"];
+                    cpp = ["clang-format"];
+                    hpp = ["clang-format"];
                 };
                 format_after_save = {
                     lsp_fallback = true;
