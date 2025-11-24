@@ -31,6 +31,7 @@ window#waybar.hidden {
 #cpu,
 #custom-launcher,
 #custom-bluetooth,
+#language,
 #mpris {
   font-size: 12px;
   color: @base00;
@@ -96,6 +97,11 @@ window#waybar.empty #window {
   background: transparent;
   color: transparent;
   border-bottom: none;
+}
+
+#language {
+  color: @base0B;
+  border-bottom-color: @base0B;
 }
 
 /* ======================================================== */

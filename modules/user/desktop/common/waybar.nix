@@ -32,12 +32,20 @@
 
                     modules-right = [
                         "wlr/taskbar"
+                        "hyprland/language"
                         "custom/bluetooth"
                         "network"
                         "memory"
                         "tray"
                         "battery"
                     ];
+
+                    "hyprland/language" = {
+                        format = "{}";
+                        format-en = "EN";
+                        format-ru = "RU";
+                        tooltip-format = "{long}";
+                    };
 
                     wireplumber = {
                         tooltip = false;
