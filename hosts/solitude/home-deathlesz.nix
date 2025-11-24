@@ -6,6 +6,18 @@
     ...
 }: let
     gpgKeyId = "F2C9CA3B08EFB236";
+
+    toggleRefreshRate = pkgs.writeShellApplication {
+        name = "toggle-refresh-rate";
+
+        runtimeInputs = with pkgs; [
+            libnotify
+            jq
+            bc
+        ];
+
+        text = builtins.readFile ./toggle-refresh-rate.sh;
+    };
 in {
     config = {
         userSettings = {
@@ -79,6 +91,10 @@ in {
             monitor = [
                 "eDP-1, 1920x1080@360.01, 0x0, 1"
                 # "HDMI-A-1, 1920x1080@60.00, -1920x0, 1"
+            ];
+
+            bind = [
+                ", XF86Launch4, exec, ${toggleRefreshRate}/bin/toggle-refresh-rate"
             ];
         };
 
