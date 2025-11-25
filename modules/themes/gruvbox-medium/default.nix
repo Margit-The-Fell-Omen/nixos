@@ -4,8 +4,10 @@
     author = "morhetz";
     description = " Retro groove color scheme for Vim.";
     polarity = "dark";
-    backgroundUrl = "https://gruvbox-wallpapers.pages.dev/wallpapers/photography/Colors.png";
-    backgroundSha256 = "sha256-DFkR/1a2MJ77PrLP699AMfabUjM9ArtMd4CfHPHBW4E=";
+    background = ./wallpaper.png;
+    backgroundHash = "";
+    # background = "https://gruvbox-wallpapers.pages.dev/wallpapers/photography/Colors.png";
+    # backgroundHash = "sha256-DFkR/1a2MJ77PrLP699AMfabUjM9ArtMd4CfHPHBW4E=";
     # NOTE: can't see comments with 0.6 opacity in kitty
     # backgroundUrl = "https://images7.alphacoders.com/126/1266081.jpg";
     # backgroundSha256 = "sha256-wCXKHemZYxVYnWVwh6Ng/nGlUroRotXgvcOdSfqRPeo=";

@@ -5,8 +5,8 @@
     credits = "Forked from Fernando Marques (https://github.com/RakkiUwU) and Gabriel Fontes (https://github.com/Misterio77))";
     description = "Flagship theme of the LibrePhoenix Channel, named after a mythical metal";
     polarity = "dark";
-    backgroundUrl = "https://wallpapers.com/images/hd/alluring-sunset-anime-scenery-r2gmgtcp8h9iwo9u.webp";
-    backgroundSha256 = "sha256-jOd9SznQTa8AoO6cZGy0LhN8lBadrRf60FvyCEs2tLo=";
+    background = "https://wallpapers.com/images/hd/alluring-sunset-anime-scenery-r2gmgtcp8h9iwo9u.webp";
+    backgroundHash = "sha256-jOd9SznQTa8AoO6cZGy0LhN8lBadrRf60FvyCEs2tLo=";
     base00 = "#1a181a";
     base01 = "#262326";
     base02 = "#302c30";

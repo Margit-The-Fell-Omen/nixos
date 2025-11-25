@@ -28,6 +28,8 @@
                         };
                     }
 
+                    inputs.chaotic.nixosModules.default
+
                     # host-specific configuration
                     {config.networking.hostName = host;}
                     ./hosts/${host}
@@ -92,5 +94,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
+        chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };
 }

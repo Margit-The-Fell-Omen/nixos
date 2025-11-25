@@ -39,10 +39,14 @@ in {
     config = lib.mkIf config.userSettings.styling.enable {
         stylix.enable = true;
         stylix.polarity = theme.polarity;
-        stylix.image = pkgs.fetchurl {
-            url = theme.backgroundUrl;
-            sha256 = theme.backgroundSha256;
-        };
+        stylix.image =
+            if lib.isPath theme.background
+            then theme.background
+            else
+                pkgs.fetchurl {
+                    url = theme.background;
+                    hash = theme.backgroundHash;
+                };
         stylix.base16Scheme = theme;
         stylix.fonts = {
             serif = {
