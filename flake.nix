@@ -5,20 +5,6 @@
         # NOTE: hard-coded for now
         system = "x86_64-linux";
 
-        pkgs = import inputs.nixpkgs {
-            inherit system;
-
-            config = {allowUnfree = true;};
-            overlays = [inputs.nix-firefox-addons.overlays.default];
-        };
-
-        pkgs-stable = import inputs.nixpkgs-stable {
-            inherit system;
-
-            config = {allowUnfree = true;};
-            overlays = [inputs.nix-firefox-addons.overlays.default];
-        };
-
         lib = inputs.nixpkgs.lib;
         libM = lib // import ./lib {lib = lib;};
 
@@ -35,6 +21,13 @@
                 inherit system;
 
                 modules = [
+                    {
+                        nixpkgs = {
+                            config = {allowUnfree = true;};
+                            overlays = [inputs.nix-firefox-addons.overlays.default];
+                        };
+                    }
+
                     # host-specific configuration
                     {config.networking.hostName = host;}
                     ./hosts/${host}
@@ -50,8 +43,6 @@
 
                         home-manager.extraSpecialArgs = {
                             inherit system;
-                            inherit pkgs;
-                            inherit pkgs-stable;
                             inherit libM;
                             inherit inputs;
                         };
@@ -60,8 +51,6 @@
 
                 specialArgs = {
                     inherit system;
-                    inherit pkgs;
-                    inherit pkgs-stable;
                     inherit libM;
                     inherit inputs;
                 };
@@ -69,19 +58,23 @@
         })
         hosts);
 
-        devShells."${system}".default = pkgs.mkShell {
-            packages = with pkgs; [
-                nixd
-                inputs.alejandra.defaultPackage.${system}
+        devShells."${system}".default = let
+            pkgs = import inputs.nixpkgs {
+                inherit system;
+            };
+        in
+            pkgs.mkShell {
+                packages = with pkgs; [
+                    nixd
+                    inputs.alejandra.defaultPackage.${system}
 
-                zsh
-            ];
-        };
+                    zsh
+                ];
+            };
     };
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
