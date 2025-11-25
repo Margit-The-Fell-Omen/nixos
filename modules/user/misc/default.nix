@@ -28,6 +28,9 @@
                     update_ms = 100;
                 };
             };
+            lazydocker = lib.mkIf osConfig.hostSettings.docker.enable {
+                enable = true;
+            };
         };
     };
 }

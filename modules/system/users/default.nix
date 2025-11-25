@@ -23,7 +23,8 @@
                 isNormalUser = true;
                 extraGroups =
                     ["networkmanager"]
-                    ++ (lib.optionals (lib.any (x: x == username) config.hostSettings.adminUsers) ["wheel"]);
+                    ++ (lib.optionals (lib.any (x: x == username) config.hostSettings.adminUsers) ["wheel"])
+                    ++ (lib.optional config.hostSettings.docker.enable "docker");
                 createHome = true;
             };
         })

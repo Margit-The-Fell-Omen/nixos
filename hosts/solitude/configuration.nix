@@ -13,11 +13,12 @@
             pipewire.enable = true;
             hyprland.enable = true;
             sddm.enable = true;
+            docker.enable = true;
 
             styling = {
                 enable = true;
 
-                theme = "everforest-medium";
+                theme = "gruvbox-medium";
 
                 plymouth.enable = true;
                 # plymouth.theme = "ecorp-glitch";
@@ -25,6 +26,9 @@
                 grub.theme = "cybergrub-2077";
             };
         };
+
+        boot.kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride {mArch = "GENERIC_V3";};
+        # hardware.nvidia.package = pkgs.linuxPackages_cachyos-lto.nvidiaPackages.latest;
 
         hardware.nvidia.prime = {
             nvidiaBusId = "PCI:1:0:0";
