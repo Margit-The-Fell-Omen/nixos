@@ -39,6 +39,9 @@
             # Enable SDDM
             sddm.enable = true;
 
+            # Enable Docker
+            docker.enable = true;
+
             # Styling-related features
             styling = {
                 # Enable styling through Stylix
