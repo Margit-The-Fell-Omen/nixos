@@ -1,9 +1,7 @@
 {
     config,
     lib,
-    libM,
     pkgs,
-    osConfig,
     ...
 }: {
     config = lib.mkIf config.userSettings.hyprland.enable {
@@ -12,6 +10,8 @@
             grim
             slurp
         ];
+
+        programs.yazi.enable = true;
 
         services = {
             mako = {

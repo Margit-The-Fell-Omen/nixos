@@ -15,7 +15,7 @@
             portalPackage = null;
             settings = {
                 "$terminal" = "${config.userSettings.terminals.defaultTerminal}";
-                "$fileManager" = "${config.userSettings.terminals.defaultTerminal} -- yazi";
+                "$fileManager" = "${config.userSettings.terminals.defaultTerminal} --class yazi -- yazi";
                 "$menu" = "rofi -show drun -theme ${config.home.homeDirectory}/.config/rofi/launcher.rasi";
 
                 exec-once = [
@@ -150,12 +150,15 @@
                     "dimaround,class:^com.gabm.satty$"
                     "minsize 700 500,class:^com.gabm.satty$"
 
-                    # ncmpcpp & cava
-                    "float,class:^ncmpcpp$"
-                    "size 60% 50%,class:^ncmpcpp$"
+                    # rmpc & cava
+                    "float,class:^rmpc$"
+                    "size 60% 50%,class:^rmpc$"
 
                     "float,class:^cava$"
                     "size 30% 20%,class:^cava$"
+
+                    "float,class:^yazi$"
+                    "size 80% 80%,class:^yazi$"
                 ];
 
                 "$mainMod" = "SUPER";
@@ -245,7 +248,7 @@
                     "$mainMod, L, exec, hyprlock"
 
                     # music
-                    "$mainMod, N, exec, $terminal --class ncmpcpp -- ncmpcpp"
+                    "$mainMod, N, exec, $terminal --class rmpc -- rmpc"
                     "$mainMod SHIFT, N, exec, $terminal --class cava -- cava"
                 ];
 
