@@ -1,6 +1,5 @@
 {
     config,
-    osConfig,
     lib,
     pkgs,
     ...
@@ -16,10 +15,11 @@
     };
 
     config = {
-        userSettings.shells.zsh.enable = lib.mkIf (config.userSettings.shells.defaultShell == "zsh") true;
+        userSettings.shells.zsh.enable = config.userSettings.shells.defaultShell == "zsh";
 
         home.packages = with pkgs; [
             ripgrep
+            fd
         ];
 
         programs = {

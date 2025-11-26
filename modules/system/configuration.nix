@@ -43,6 +43,7 @@
             wget
 
             ntfs3g
+            xxd
         ];
 
         programs.nh = {
