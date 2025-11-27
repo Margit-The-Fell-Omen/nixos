@@ -47,6 +47,8 @@ in {
                     url = theme.background;
                     hash = theme.backgroundHash;
                 };
+
+        stylix.targets.hyprpaper.enable = lib.mkForce (! (theme ? liveWallpaper));
         stylix.base16Scheme = theme;
         stylix.fonts = {
             serif = {
@@ -68,5 +70,33 @@ in {
         };
 
         stylix.cursor = config.userSettings.styling.cursor;
+
+        # Ensure the package is installed if a live wallpaper is selected
+        home.packages = lib.mkIf (theme ? liveWallpaper) [
+            pkgs.linux-wallpaperengine
+        ];
+
+        # Define the service manually to avoid "Option does not exist" errors
+        systemd.user.services.linux-wallpaperengine = lib.mkIf (theme ? liveWallpaper) {
+            Unit = {
+                Description = "Wallpaper Engine for Linux";
+                After = ["graphical-session-pre.target"];
+                PartOf = ["graphical-session.target"];
+            };
+            Install = {
+                WantedBy = ["graphical-session.target"];
+            };
+            Service = {
+                # We manually point to the specific wallpaper folder
+                ExecStart = ''
+                    ${pkgs.linux-wallpaperengine}/bin/linux-wallpaperengine \
+                        --silent \
+                        --screen-root DP-1 \
+                        --assets-dir %h/.local/share/Steam/steamapps/workshop/content/431960/${theme.liveWallpaper} \
+                        %h/.local/share/Steam/steamapps/workshop/content/431960/${theme.liveWallpaper}
+                '';
+                Restart = "always";
+            };
+        };
     };
 }

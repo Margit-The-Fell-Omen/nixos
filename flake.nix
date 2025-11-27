@@ -63,6 +63,7 @@
         devShells."${system}".default = let
             pkgs = import inputs.nixpkgs {
                 inherit system;
+                config.allowUnfree = true;
             };
         in
             pkgs.mkShell {
@@ -71,6 +72,7 @@
                     inputs.alejandra.defaultPackage.${system}
 
                     zsh
+                    steamcmd
                 ];
             };
     };
