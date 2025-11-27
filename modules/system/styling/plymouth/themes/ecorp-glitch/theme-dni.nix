@@ -16,12 +16,21 @@ stdenvNoCC.mkDerivation rec {
     };
 
     installPhase = ''
-        mkdir -p $out/share/plymouth/themes
-        cp -r ecorp-glitch $out/share/plymouth/themes/
+        runHook preInstallw
+
+        realOut=$out/share/plymouth/themes
+
+        mkdir -p $realOut
+        cp -r ecorp-glitch $realOut
+
+        substituteInPlace $realOut/ecorp-glitch/ecorp-glitch.plymouth \
+            --replace /usr/share/plymouth/themes $realOut
+
+        runHook postInstall
     '';
 
     meta = {
-        description = "Boot Animations (Plymouth themes) for the GNU/Linux Operating System. ";
+        description = "Boot Animations (Plymouth themes) for the GNU/Linux Operating System.";
         homepage = "https://github.com/hrshbh/plymouth-themes";
         license = lib.licenses.gpl3Only;
     };

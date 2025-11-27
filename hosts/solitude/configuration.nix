@@ -21,7 +21,7 @@
                 theme = "gruvbox-medium";
 
                 plymouth.enable = true;
-                # plymouth.theme = "ecorp-glitch";
+                plymouth.theme = "arasaka";
 
                 grub.theme = "cybergrub-2077";
             };

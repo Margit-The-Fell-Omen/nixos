@@ -3,8 +3,6 @@
     lib,
     libM,
     pkgs,
-    inputs,
-    system,
     ...
 }: let
     theme = config.hostSettings.styling.plymouth.theme;
@@ -35,10 +33,12 @@ in {
             kernelParams = [
                 "quiet"
                 "splash"
-                "loglevel=3"
-                "systemd.show_status=false"
-                "udev.log_level=3"
-                "udev.log_priority=3"
+                "loglevel=1"
+                "systemd.show_status=auto"
+                "udev.log_level=1"
+                "rd.udev.log_level=1"
+                "udev.log_priority=1"
+                "rd.udev.log_priority=1"
             ];
 
             plymouth = {
