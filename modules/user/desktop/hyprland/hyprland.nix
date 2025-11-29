@@ -235,7 +235,7 @@
                     "$mainMod, PRINT, exec, grimblast -n -f save area ~/\${date '+%Y-%m-%d_%H:%M:%S'}.png"
 
                     # do stuff
-                    "SHIFT, PRINT, exec, GRIMBLAST_EDITOR=\"satty --actions-on-enter save-to-clipboard,exit --filename \" grimblast -f edit area"
+                    "SHIFT, PRINT, exec, GRIMBLAST_EDITOR=\"satty --copy-command wl-copy --actions-on-enter save-to-clipboard,exit --filename \" grimblast -f edit area"
 
                     # full screen
                     "ALT, PRINT, exec, grimblast -n -f copy screen"
