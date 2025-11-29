@@ -7,11 +7,19 @@
     config = {
         # Here you set all the (host/system)-wide settings
         hostSettings = {
+            # Enable CachyOS LTO kernel
+            cachy.enable = true;
+            # Enable microarchitecture optimizations
+            # cachy.arch = "GENERIC_V3";
+
             # Users to create on the machine (you will need to create `home-{username}.nix` files for each such user)
             users = ["username"];
 
             # Users to grant admin (i.e. `sudo`) privileges
             adminUsers = ["username"];
+
+            # Enable security-related stuff, like changing sudo to sudo-rs
+            security.enable = true;
 
             # Enable graphics support
             graphics.enable = true;

@@ -1,24 +1,31 @@
 {pkgs, ...}: {
     config = {
         hostSettings = {
+            cachy.enable = true;
+            cachy.arch = "GENERIC_V3";
+
             users = ["deathlesz"];
             adminUsers = ["deathlesz"];
+
+            security.enable = true;
 
             graphics.enable = true;
             graphics.nvidia.enable = true;
             graphics.amd.enable = true;
             laptop.enable = true;
-            bluetooth.enable = true;
 
             pipewire.enable = true;
-            hyprland.enable = true;
+            bluetooth.enable = true;
+
             sddm.enable = true;
+            hyprland.enable = true;
+
             docker.enable = true;
 
             styling = {
                 enable = true;
 
-                theme = "gruvbox-medium";
+                theme = "everforest-medium";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";
@@ -26,9 +33,6 @@
                 grub.theme = "cybergrub-2077";
             };
         };
-
-        boot.kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride {mArch = "GENERIC_V3";};
-        # hardware.nvidia.package = pkgs.linuxPackages_cachyos-lto.nvidiaPackages.latest;
 
         hardware.nvidia.prime = {
             nvidiaBusId = "PCI:1:0:0";

@@ -1,7 +1,7 @@
 {
     description = "Deathlesz' NixOS";
 
-    outputs = inputs @ {self, ...}: let
+    outputs = inputs @ {...}: let
         # NOTE: hard-coded for now
         system = "x86_64-linux";
 
