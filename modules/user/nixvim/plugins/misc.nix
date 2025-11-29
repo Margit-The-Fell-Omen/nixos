@@ -59,6 +59,9 @@
             require("lz.n").load({
                 "substitute",
                 event = {"BufReadPre", "BufNewFile"},
+                after = function()
+                    require("substitute").setup()
+                end
             });
         '';
 
