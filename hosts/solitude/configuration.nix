@@ -23,6 +23,8 @@
 
             docker.enable = true;
 
+            gaming.enable = true;
+
             styling = {
                 enable = true;
 
