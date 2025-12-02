@@ -2,7 +2,8 @@
     config = {
         hostSettings = {
             cachy.enable = true;
-            cachy.arch = "GENERIC_V3";
+            cachy.variant = "gcc";
+            # cachy.arch = "GENERIC_V3";
 
             users = ["deathlesz"];
             adminUsers = ["deathlesz"];
