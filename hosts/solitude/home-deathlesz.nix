@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+    lib,
+    pkgs,
+    ...
+}: let
     gpgKeyId = "F2C9CA3B08EFB236";
 
     toggleRefreshRate = pkgs.writeShellApplication {
@@ -11,6 +15,36 @@
         ];
 
         text = builtins.readFile ./toggle-refresh-rate.sh;
+    };
+
+    quote = pkgs.stdenv.mkDerivation rec {
+        pname = "quote";
+        version = "296c0de08f9a35da05ffecb8decc5f602b54dd72";
+
+        src = pkgs.fetchFromGitHub {
+            owner = "deathlesz";
+            repo = "quote";
+            rev = version;
+            hash = "sha256-+rErlBeYMR12YJRUo3mmHuEhWpPUUVKbzf0/t5b/Cio=";
+        };
+
+        nativeBuildInputs = with pkgs; [
+            nasm
+        ];
+
+        buildPhase = ''
+            nasm -felf64 quote.a -o quote.o
+            ld quote.o -o quote
+        '';
+
+        installPhase = ''
+            runHook preInstall
+
+            mkdir -p $out/bin/
+            cp quote $out/bin/
+
+            runHook postInstall
+        '';
     };
 in {
     config = {
@@ -32,34 +66,7 @@ in {
             security.enable = true;
             git.enable = true;
 
-            styling = {
-                enable = true;
-                # cursor = {
-                #   name = "Quintom_Snow";
-                #   package = pkgs.quintom-cursor-theme;
-                #   size = 24;
-                # };
-                # font = {
-                #   defaultSerif = {
-                #     name = "Fira Sans";
-                #     package = pkgs.fira-sans;
-                #   };
-                #   defaultSansSerif = {
-                #     name = "Fira Sans";
-                #     package = pkgs.fira-sans;
-                #   };
-                #   defaultMonospace = {
-                #     name = "JetBrainsMono Nerd Font";
-                #     package = pkgs.nerd-fonts.jetbrains-mono;
-                #   };
-                #   defaultEmoji = {
-                #     name = "Twitter Color Emoji";
-                #     package = pkgs.twitter-color-emoji;
-                #   };
-                # };
-                #
-                # stylix.theme = "nord";
-            };
+            styling.enable = true;
 
             misc.enable = true;
         };
@@ -101,6 +108,9 @@ in {
                     startMinimized = true;
                 };
             };
+            zsh.initContent = lib.mkAfter ''
+                ${quote}/bin/quote
+            '';
         };
 
         home.packages = with pkgs; [
