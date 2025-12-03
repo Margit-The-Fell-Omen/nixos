@@ -18,8 +18,10 @@
             # Users to grant admin (i.e. `sudo`) privileges
             adminUsers = ["username"];
 
-            # Enable security-related stuff, like changing sudo to sudo-rs
-            security.enable = true;
+            security = {
+                # replace sudo with sudo-rs
+                sudo-rs.enable = true;
+            };
 
             # Enable graphics support
             graphics.enable = true;
