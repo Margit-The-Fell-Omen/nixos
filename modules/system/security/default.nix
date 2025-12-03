@@ -1,16 +1,21 @@
 {
     config,
     lib,
+    pkgs,
     ...
-}: {
+}: let
+    cfg = config.hostSettings.security;
+in {
     options = {
         hostSettings = {
-            security.enable = lib.mkEnableOption "security settings";
+            security = {
+                sudo-rs.enable = lib.mkEnableOption "sudo-rs as alternative to sudo";
+            };
         };
     };
 
-    config = lib.mkIf config.hostSettings.security.enable {
-        security.sudo-rs = {
+    config = {
+        security.sudo-rs = lib.mkIf cfg.sudo-rs.enable {
             enable = true;
             execWheelOnly = true;
         };

@@ -8,7 +8,7 @@
             users = ["deathlesz"];
             adminUsers = ["deathlesz"];
 
-            security.enable = true;
+            security.sudo-rs.enable = true;
 
             graphics.enable = true;
             graphics.nvidia.enable = true;
