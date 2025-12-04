@@ -22,6 +22,7 @@
             hyprland.enable = true;
 
             docker.enable = true;
+            virtualization.enable = true;
 
             gaming.enable = true;
 
