@@ -51,6 +51,21 @@
                 enable = true;
                 lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
             };
+            crates = {
+                enable = true;
+                lazyLoad.settings.event = ["BufRead Cargo.toml"];
+                settings = {
+                    lsp = {
+                        enabled = true;
+                        actions = true;
+                        completion = true;
+                        hover = true;
+                    };
+                    completion = {
+                        crates.enabled = true;
+                    };
+                };
+            };
             lualine.enable = true;
         };
 
