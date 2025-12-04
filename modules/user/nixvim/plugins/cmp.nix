@@ -6,6 +6,7 @@
     ...
 }: {
     config.programs.nixvim = lib.mkIf config.userSettings.nixvim.enable {
+        plugins.blink-compat.enable = true;
         plugins.blink-cmp = {
             enable = true;
             settings = {
@@ -23,11 +24,11 @@
                 };
 
                 sources = {
-                    default = ["lsp" "path" "snippets" "buffer"];
+                    default = ["crates" "lsp" "path" "snippets" "buffer"];
                     # default = [ "lazydev" "lsp" "path" "snippets" "buffer" "crates" ];
-                    # per_filetype = {
-                    #     sql = [ "snippets" "dadbod" "buffer" ];
-                    # };
+                    per_filetype = {
+                        sql = ["snippets" "dadbod" "buffer"];
+                    };
                     providers = {
                         # lazydev = {
                         #     name = "LazyDev";
@@ -38,11 +39,11 @@
                             name = "Dadbod";
                             module = "vim_dadbod_completion.blink";
                         };
-                        # crates = {
-                        #     name = "crates";
-                        #     module = "blink.compat.source";
-                        #     score_offset = 100;
-                        # };
+                        crates = {
+                            name = "crates";
+                            module = "blink.compat.source";
+                            score_offset = 100;
+                        };
                     };
                 };
 
