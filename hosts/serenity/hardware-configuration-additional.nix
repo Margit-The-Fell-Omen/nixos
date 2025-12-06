@@ -35,4 +35,17 @@
         device = "/dev/disk/by-uuid/7855-839E";
         fsType = "vfat";
     };
+
+    # mount windows partitions and allow all users access
+    fileSystems."/mnt/c" = {
+        device = "/dev/disk/by-uuid/34CA5553CA55130A";
+        fsType = "ntfs";
+        options = ["umask=000" "windows_names"];
+    };
+
+    fileSystems."/mnt/d" = {
+        device = "/dev/disk/by-uuid/CCF8AF22F8AF09B2";
+        fsType = "ntfs";
+        options = ["umask=000" "windows_names"];
+    };
 }
