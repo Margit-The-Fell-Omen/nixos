@@ -2,12 +2,25 @@
     config,
     lib,
     nixvimLib,
+    pkgs,
     ...
 }: {
     config.programs.nixvim = lib.mkIf config.userSettings.nixvim.enable {
         plugins.lsp = {
             enable = true;
             servers = {
+                pylsp = {
+                    enable = true;
+                    settings = {
+                        plugins = {
+                            ruff.enabled = true;
+                            isort.enabled = true;
+                            pylsp_mypy.enabled = true;
+                        };
+
+                        pythonPackage = pkgs.python312;
+                    };
+                };
                 nixd.enable = true;
                 clangd = {
                     enable = true;
@@ -57,6 +70,7 @@
                 rust_analyzer.enable = true;
                 tinymist.enable = true;
                 clangd.enable = true;
+                pylsp.enable = true;
             };
             keymaps = [
                 {

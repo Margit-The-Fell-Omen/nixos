@@ -26,6 +26,8 @@
                         "cpp"
                         "rust"
                         "nix"
+                        "python"
+                        "nasm"
                     ];
                 };
             };
