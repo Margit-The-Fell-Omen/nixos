@@ -10,7 +10,7 @@
                 enable = true;
                 nixvimInjections = true;
                 settings = {
-                    hightlight.enable = true;
+                    highlight.enable = true;
                     indent.enable = true;
                     autotag.enable = true;
                     ensure_installed = [
