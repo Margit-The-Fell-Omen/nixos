@@ -14,8 +14,8 @@
             settings = {
                 listener = [
                     {
-                        timeout = 300; # 5 minutes with 1 minute grace period
-                        on-timeout = "hyprlock --grace 60";
+                        timeout = 600; # 10 minutes with 5 minute grace period
+                        on-timeout = "hyprlock --grace 300";
                     }
                 ];
             };
