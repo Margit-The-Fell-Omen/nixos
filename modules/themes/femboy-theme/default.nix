@@ -5,7 +5,7 @@
     description = "Femboy-theme!!!";
     polarity = "dark";
 
-    liveWallpaper = "3578156286";
+    #liveWallpaper = "3578156286";
 
     background = ./wallpaper.jpg;
     backgroundSha256 = "";
