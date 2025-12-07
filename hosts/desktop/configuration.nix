@@ -66,7 +66,7 @@
                 enable = true;
 
                 # Host-wide theme to use, see `../../modules/themes/`
-                theme = "cyberpunk";
+                theme = "dune";
 
                 # Host-wide font configuration
                 fonts = {
