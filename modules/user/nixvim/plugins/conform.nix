@@ -26,10 +26,6 @@
                     async = true;
                     timeout_ms = 500;
                 };
-                formatters.rustfmt = {
-                    command = "rustfmt +nightly fmt";
-                    prepend_args = ["--unstable-features"];
-                };
             };
         };
     };
