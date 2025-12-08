@@ -21,7 +21,10 @@
                         pythonPackage = pkgs.python312;
                     };
                 };
-                nixd.enable = true;
+                nixd = {
+                    enable = true;
+                    cmd = ["nixd" "--semantic-tokens=true"];
+                };
                 clangd = {
                     enable = true;
                     package = null;
