@@ -69,11 +69,13 @@ in {
             };
         };
 
-        environment.systemPackages = lib.concatLists [
+        fonts.packages = lib.concatLists [
             (toList cfg.serif.package)
             (toList cfg.sansSerif.package)
             (toList cfg.monospace.package)
             (toList cfg.emoji.package)
+
+            [pkgs.corefonts]
         ];
     };
 }
