@@ -69,16 +69,5 @@ in {
                 emoji = toList config.userSettings.styling.fonts.emoji.name;
             };
         };
-
-        home.packages = lib.concatLists [
-            (toList
-                config.userSettings.styling.fonts.serif.package)
-            (toList
-                config.userSettings.styling.fonts.sansSerif.package)
-            (toList
-                config.userSettings.styling.fonts.monospace.package)
-            (toList
-                config.userSettings.styling.fonts.emoji.package)
-        ];
     };
 }
