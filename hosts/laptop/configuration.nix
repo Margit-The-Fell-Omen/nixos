@@ -14,6 +14,9 @@
             pkgs.steam
         ];
 
+        virtualisation.docker.enable = true;
+        users.users.ushki.extraGroups = ["docker"];
+
         # 1. Allow unfree packages (Steam is proprietary)
         nixpkgs.config.allowUnfree = true;
 
@@ -80,7 +83,7 @@
                 };
 
                 # Enable splash screen on load instead of raw TTY
-                plymouth.enable = false;
+                plymouth.enable = true;
 
                 # Theme for splash screen, see `../../modules/system/styling/plymouth/themes/`
                 # By default, shows NixOS logo
