@@ -71,6 +71,10 @@ in {
             misc.enable = true;
         };
 
+        programs.obsidian = {
+            enable = true;
+        };
+
         programs.git = {
             settings.user = {
                 name = "Deathlesz";
@@ -108,6 +112,9 @@ in {
                     startMinimized = true;
                 };
             };
+            vesktop = {
+                enable = true;
+            };
             zsh.initContent = lib.mkAfter ''
                 ${quote}/bin/quote
             '';
@@ -115,6 +122,14 @@ in {
 
         home.packages = with pkgs; [
             telegram-desktop
+
+            libreoffice-qt-fresh
+            hunspell
+            hunspellDicts.ru_RU
+            hunspellDicts.en_US-large
+
+            hyphenDicts.ru_RU
+            hyphenDicts.en_US
         ];
 
         home.shellAliases = {

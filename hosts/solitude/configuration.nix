@@ -1,8 +1,8 @@
 {pkgs, ...}: {
     config = {
         hostSettings = {
-            cachy.enable = true;
-            cachy.variant = "gcc";
+            # cachy.enable = true;
+            # cachy.variant = "gcc";
             # cachy.arch = "GENERIC_V3";
 
             users = ["deathlesz"];
@@ -29,7 +29,7 @@
             styling = {
                 enable = true;
 
-                theme = "everforest-medium";
+                theme = "catppuccin-mocha";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";
