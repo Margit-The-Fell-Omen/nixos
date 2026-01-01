@@ -20,5 +20,7 @@
                 proton-ge-bin
             ];
         };
+
+        programs.gamemode.enable = true;
     };
 }
