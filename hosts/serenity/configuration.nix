@@ -1,10 +1,6 @@
 {pkgs, ...}: {
     config = {
         hostSettings = {
-            cachy.enable = true;
-            cachy.variant = "gcc";
-            # cachy.arch = "GENERIC_V3";
-
             users = ["deathlesz"];
             adminUsers = ["deathlesz"];
 

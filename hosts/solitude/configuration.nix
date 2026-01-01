@@ -1,10 +1,6 @@
 {pkgs, ...}: {
     config = {
         hostSettings = {
-            # cachy.enable = true;
-            # cachy.variant = "gcc";
-            # cachy.arch = "GENERIC_V3";
-
             users = ["deathlesz"];
             adminUsers = ["deathlesz"];
 
@@ -29,7 +25,7 @@
             styling = {
                 enable = true;
 
-                theme = "catppuccin-mocha";
+                theme = "gruvbox-medium";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";
@@ -51,6 +47,21 @@
         '';
 
         services = {
+            # blocky = {
+            #     enable = true;
+            #     settings = {
+            #         upstreams.groups.default = [
+            #             "https:1.1.1.1/dns-query#cloudflare-dns.com"
+            #         ];
+            #
+            #         blocking = {
+            #             denylists.ai = [
+            #                 "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/list_uBlacklist.txt"
+            #             ];
+            #             clientGroupsBlock.default = ["ai"];
+            #         };
+            #     };
+            # };
             supergfxd.enable = true;
             asusd = {
                 enable = true;
@@ -61,6 +72,10 @@
                 package = pkgs.mullvad-vpn;
             };
         };
+
+        # networking.nameservers = [
+        #     "127.0.0.1"
+        # ];
 
         system.stateVersion = "25.05";
     };

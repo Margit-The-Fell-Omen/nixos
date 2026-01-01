@@ -71,10 +71,6 @@ in {
             misc.enable = true;
         };
 
-        programs.obsidian = {
-            enable = true;
-        };
-
         programs.git = {
             settings.user = {
                 name = "Deathlesz";
@@ -101,9 +97,16 @@ in {
             bind = [
                 ", XF86Launch4, exec, ${toggleRefreshRate}/bin/toggle-refresh-rate"
             ];
+
+            exec-once = [
+                "[workspace 3 silent] obsidian"
+            ];
         };
 
         programs = {
+            obsidian = {
+                enable = true;
+            };
             mullvad-vpn = {
                 enable = true;
                 package = null;

@@ -28,8 +28,6 @@
                         };
                     }
 
-                    inputs.chaotic.nixosModules.default
-
                     # host-specific configuration
                     {config.networking.hostName = host;}
                     ./hosts/${host}
@@ -80,7 +78,6 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
-        chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
