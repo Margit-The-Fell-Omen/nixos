@@ -59,6 +59,7 @@ in {
     };
 
     config = lib.mkIf config.hostSettings.styling.enable {
+        fonts.fontDir.enable = true;
         fonts.fontconfig = {
             enable = true;
             defaultFonts = {

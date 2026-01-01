@@ -48,8 +48,11 @@
 
         programs.nh = {
             enable = true;
-            clean.enable = true;
-            clean.extraArgs = "--keep 10 --keep-since 7d --optimise";
+            clean = {
+                enable = true;
+                dates = "monthly";
+                extraArgs = "--keep 20 --keep-since 7d --optimise";
+            };
             flake = "/home/deathlesz/dotfiles";
         };
 
