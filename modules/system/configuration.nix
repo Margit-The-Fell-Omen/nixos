@@ -2,6 +2,7 @@
     config,
     lib,
     pkgs,
+    inputs,
     ...
 }: {
     # generally default values, can be changed by specific hosts
@@ -14,12 +15,18 @@
                 trusted-users = ["@wheel"];
                 # try default cache server first
                 # otherwise, try to pull from nix-community cachix server
+                # otherwise, from garnix ci servers
+                # last one is for cachyos kernels binary cache
                 substituters = [
                     "https://cache.nixos.org"
                     "https://nix-community.cachix.org"
+                    "https://cache.garnix.io"
+                    "https://attic.xuyh0120.win/lantian"
                 ];
                 trusted-public-keys = [
                     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+                    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+                    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
                 ];
             };
 
@@ -28,6 +35,11 @@
                 dates = "weekly";
                 options = "--delete-older-than 30d";
             };
+        };
+
+        nixpkgs = {
+            config = {allowUnfree = true;};
+            overlays = [inputs.nix-firefox-addons.overlays.default inputs.nix-cachyos-kernel.overlays.default];
         };
 
         environment.systemPackages = with pkgs; [

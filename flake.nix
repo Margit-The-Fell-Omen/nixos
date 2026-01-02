@@ -24,7 +24,7 @@
                     {
                         nixpkgs = {
                             config = {allowUnfree = true;};
-                            overlays = [inputs.nix-firefox-addons.overlays.default];
+                            overlays = [inputs.nix-firefox-addons.overlays.default inputs.nix-cachyos-kernel.overlays.default];
                         };
                     }
 
@@ -78,6 +78,7 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nix-firefox-addons.url = "github:osipog/nix-firefox-addons";
+        nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
         home-manager = {
             url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
