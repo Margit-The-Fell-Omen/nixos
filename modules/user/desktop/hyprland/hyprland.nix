@@ -20,14 +20,14 @@
 
                 exec-once = [
                     "waybar"
-                    "hyprctl setcursor ${config.userSettings.styling.cursor.name} ${builtins.toString config.userSettings.styling.cursor.size}"
+                    "hyprctl setcursor ${config.userSettings.styling.cursor.name} ${toString config.userSettings.styling.cursor.size}"
                     "[workspace 1 silent] firefox"
                     "[workspace 2 silent] kitty"
                 ];
 
-                # debug = {
-                #     disable_logs = false;
-                # };
+                debug = {
+                    disable_logs = false;
+                };
 
                 general = {
                     gaps_in = 5;
@@ -138,27 +138,25 @@
                     };
                 };
 
-                windowrulev2 = [
+                windowrule = [
                     # ignore maximize requests from apps
-                    "suppressevent maximize, class:.*"
+                    "suppress_event maximize, match:class *"
 
                     # xix some dragging issues with XWayland
-                    "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+                    "no_focus on, match:class ^$ match title ^$ match:xwayland 1 match:floating 1 match:fullscreen 0 match:pinned 0"
 
                     # make satty look better
-                    "float,class:^com.gabm.satty$"
-                    "dimaround,class:^com.gabm.satty$"
-                    "minsize 700 500,class:^com.gabm.satty$"
+                    "float on, dim_around on, min_size 700 500, center on, match:class ^com.gabm.satty$"
 
                     # rmpc & cava
-                    "float,class:^rmpc$"
-                    "size 60% 50%,class:^rmpc$"
+                    "float on, size (monitor_w*0.6) (monitor_h*0.5), center on, match:class ^rmpc$"
+                    # "size 60% 50%, match:class ^rmpc$"
 
-                    "float,class:^cava$"
-                    "size 30% 20%,class:^cava$"
+                    "float on, size (monitor_w*0.3) (monitor_h*0.2), center on, match:class ^cava$"
+                    # "size 30% 20%, match:class ^cava$"
 
-                    "float,class:^yazi$"
-                    "size 80% 80%,class:^yazi$"
+                    "float on, size (monitor_w*0.8) (monitor_h*0.8), center on, match:class ^yazi$"
+                    # "size 80% 80%, match:class ^yazi$"
                 ];
 
                 "$mainMod" = "SUPER";
@@ -276,7 +274,7 @@
                 ];
 
                 layerrule = [
-                    "blur, rofi"
+                    "blur on, match:namespace rofi"
                 ];
             };
 
