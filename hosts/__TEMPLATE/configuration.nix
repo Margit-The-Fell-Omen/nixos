@@ -7,6 +7,19 @@
     config = {
         # Here you set all the (host/system)-wide settings
         hostSettings = {
+            # Configure CachyOS kernel
+            cachy = {
+                # Enable it
+                enable = true;
+
+                # Choose a variant; It's "lto" by default, choose "gcc" if some issues are appearing
+                # such as being unable to suspend on nVidia GPUs
+                # variant = "gcc";
+
+                # Enable microarchitecture optimizations
+                # arch = "x86_64-v2"
+            }
+
             # Users to create on the machine (you will need to create `home-{username}.nix` files for each such user)
             users = ["username"];
 
