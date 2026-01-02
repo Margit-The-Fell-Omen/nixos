@@ -80,17 +80,20 @@
             serverOption = "iburst";
         };
 
-        i18n.defaultLocale = "en_US.UTF-8";
-        i18n.extraLocaleSettings = {
-            LC_ADDRESS = config.i18n.defaultLocale;
-            LC_IDENTIFICATION = config.i18n.defaultLocale;
-            LC_MEASUREMENT = config.i18n.defaultLocale;
-            LC_MONETARY = config.i18n.defaultLocale;
-            LC_NAME = config.i18n.defaultLocale;
-            LC_NUMERIC = config.i18n.defaultLocale;
-            LC_PAPER = config.i18n.defaultLocale;
-            LC_TELEPHONE = config.i18n.defaultLocale;
-            LC_TIME = config.i18n.defaultLocale;
+        i18n = {
+            defaultLocale = "en_US.UTF-8";
+            extraLocales = ["en_US/ISO-8859-1" "ru_RU.UTF-8/UTF-8" "ru_RU/ISO-8859-5"];
+            extraLocaleSettings = {
+                LC_ADDRESS = config.i18n.defaultLocale;
+                LC_IDENTIFICATION = config.i18n.defaultLocale;
+                LC_MEASUREMENT = config.i18n.defaultLocale;
+                LC_MONETARY = config.i18n.defaultLocale;
+                LC_NAME = config.i18n.defaultLocale;
+                LC_NUMERIC = config.i18n.defaultLocale;
+                LC_PAPER = config.i18n.defaultLocale;
+                LC_TELEPHONE = config.i18n.defaultLocale;
+                LC_TIME = config.i18n.defaultLocale;
+            };
         };
 
         # use zsh by default
