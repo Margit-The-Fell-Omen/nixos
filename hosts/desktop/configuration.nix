@@ -14,6 +14,9 @@
             pkgs.steam
         ];
 
+        virtualisation.docker.enable = true;
+        users.users.ushki.extraGroups = ["docker"];
+
         # 1. Allow unfree packages (Steam is proprietary)
         nixpkgs.config.allowUnfree = true;
 
