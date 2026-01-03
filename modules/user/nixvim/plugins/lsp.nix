@@ -9,6 +9,9 @@
         plugins.lsp = {
             enable = true;
             servers = {
+                cssls.enable = true;
+                emmet_language_server.enable = true;
+                superhtml.enable = true;
                 pylsp = {
                     enable = true;
                     settings = {
@@ -69,6 +72,9 @@
         };
         lsp = {
             servers = {
+                cssls.enable = true;
+                superhtml.enable = true;
+                emmet_language_server.enable = true;
                 nixd.enable = true;
                 rust_analyzer.enable = true;
                 tinymist.enable = true;
