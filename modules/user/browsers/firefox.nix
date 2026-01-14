@@ -1,5 +1,6 @@
 {
     config,
+    osConfig,
     lib,
     pkgs,
     ...
@@ -30,7 +31,10 @@
                     "browser.send_pings" = false;
 
                     # use DoH
-                    "network.trr.mode" = 3;
+                    "network.trr.mode" =
+                        if osConfig.services.blocky.enable
+                        then 5
+                        else 3;
                     "network.trr.uri" = "https://1.1.1.1/dns-query";
                     "network.trr.custom_uri" = "https://1.1.1.1/dns-query";
 

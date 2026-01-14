@@ -133,6 +133,8 @@ in {
 
             hyphenDicts.ru_RU
             hyphenDicts.en_US
+
+            prismlauncher
         ];
 
         home.shellAliases = {

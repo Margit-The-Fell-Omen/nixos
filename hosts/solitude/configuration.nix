@@ -31,7 +31,7 @@
             styling = {
                 enable = true;
 
-                theme = "gruvbox-medium";
+                theme = "everforest-medium";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";
@@ -53,21 +53,21 @@
         '';
 
         services = {
-            # blocky = {
-            #     enable = true;
-            #     settings = {
-            #         upstreams.groups.default = [
-            #             "https:1.1.1.1/dns-query#cloudflare-dns.com"
-            #         ];
-            #
-            #         blocking = {
-            #             denylists.ai = [
-            #                 "https://raw.githubusercontent.com/laylavish/uBlockOrigin-HUGE-AI-Blocklist/refs/heads/main/list_uBlacklist.txt"
-            #             ];
-            #             clientGroupsBlock.default = ["ai"];
-            #         };
-            #     };
-            # };
+            blocky = {
+                enable = true;
+                settings = {
+                    upstreams.groups.default = [
+                        "https:1.1.1.1/dns-query#cloudflare-dns.com"
+                    ];
+
+                    blocking = {
+                        denylists.ai = [
+                            ./blocklist.txt
+                        ];
+                        clientGroupsBlock.default = ["ai"];
+                    };
+                };
+            };
             supergfxd.enable = true;
             asusd = {
                 enable = true;
@@ -79,9 +79,9 @@
             };
         };
 
-        # networking.nameservers = [
-        #     "127.0.0.1"
-        # ];
+        networking.nameservers = [
+            "127.0.0.1"
+        ];
 
         system.stateVersion = "25.05";
     };
