@@ -35,8 +35,9 @@
                         if osConfig.services.blocky.enable
                         then 5
                         else 3;
-                    "network.trr.uri" = "https://1.1.1.1/dns-query";
-                    "network.trr.custom_uri" = "https://1.1.1.1/dns-query";
+                    # mozilla one has stronger privacy policy (see https://developers.cloudflare.com/1.1.1.1/commitment-to-privacy/privacy-policy/firefox/)
+                    "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
+                    "network.trr.custom_uri" = "https://mozilla.cloudflare-dns.com/dns-query";
 
                     # allow search suggestions
                     "browser.search.suggest.enabled" = true;

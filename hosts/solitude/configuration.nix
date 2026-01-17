@@ -57,7 +57,12 @@
                 enable = true;
                 settings = {
                     upstreams.groups.default = [
-                        "https:1.1.1.1/dns-query#cloudflare-dns.com"
+                        "https://1.1.1.1/dns-query#cloudflare-dns.com"
+                        "https://mozilla.cloudflare-dns.com/dns-query"
+                        "https://dns.google/dns-query"
+                        "https://unfiltered.adguard-dns.com/dns-query"
+                        "https://wikimedia-dns.org/dns-query"
+                        "https://freedns.controld.com/p0"
                     ];
 
                     blocking = {
