@@ -18,7 +18,7 @@
 
                 # Enable microarchitecture optimizations
                 # arch = "x86_64-v2"
-            }
+            };
 
             # Users to create on the machine (you will need to create `home-{username}.nix` files for each such user)
             users = ["username"];
