@@ -31,9 +31,10 @@ in {
             };
             rmpc = {
                 enable = true;
-                config = builtins.replaceStrings ["@socket@"] ["${localState}/socket"] (builtins.readFile ./rmpc-config.ron);
+                config = builtins.replaceStrings ["@address@"] [((toString config.services.mpd.network.listenAddress) + ":" + (toString config.services.mpd.network.port))] (builtins.readFile ./rmpc-config.ron);
             };
         };
+
         home.file.".config/rmpc/themes/mine.ron".text = builtins.replaceStrings
         [
             "@base08@"
@@ -62,13 +63,8 @@ in {
         home.file.".local/state/mpd/.created".text = "";
         services.mpd = {
             enable = true;
-            dbFile = "${config.home.homeDirectory}/.config/mpd/database";
-            # the default
-            # musicDirectory = config.xdg.userDirs.music;
+            network.startWhenNeeded = true;
             extraConfig = ''
-                playlist_directory "${config.home.homeDirectory}/.config/mpd/playlists/"
-                state_file "${localState}/state"
-
                 audio_output {
                     type "pipewire"
                     name "PipeWire Sound Server"
@@ -81,17 +77,15 @@ in {
                     format "44100:16:2"
                 }
 
-                bind_to_address "${localState}/socket"
-
                 auto_update "yes"
             '';
         };
-        # is needed to use `playerctl` and for it to show on waybar
-        # FIXME: waybar is lagging hard because of this (can't find something, idk)
-        services.mpd-mpris.enable = false;
 
-        home.sessionVariables = {
-            MPD_HOST = "${localState}/socket";
+        # is needed to use `playerctl` and for it to show on waybar
+        # does not work when usin
+        services.mpdris2 = {
+            enable = true;
+            multimediaKeys = true;
         };
     };
 }

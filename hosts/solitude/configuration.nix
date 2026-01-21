@@ -31,7 +31,7 @@
             styling = {
                 enable = true;
 
-                theme = "everforest-medium";
+                theme = "tokyo-night";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";

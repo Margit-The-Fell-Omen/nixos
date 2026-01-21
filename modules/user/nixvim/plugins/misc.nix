@@ -3,7 +3,6 @@
     lib,
     nixvimLib,
     pkgs,
-    inputs,
     ...
 }: {
     config.programs.nixvim = lib.mkIf config.userSettings.nixvim.enable {
@@ -13,6 +12,7 @@
                 enable = true;
                 lazyLoad.settings.event = "DeferredUIEnter";
             };
+            fidget.enable = true;
             bufferline = {
                 enable = true;
                 settings = {

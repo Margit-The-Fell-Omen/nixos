@@ -3,7 +3,7 @@
 #![enable(unwrap_variant_newtypes)]
 (
     theme: "mine",
-    address: "@socket@",
+    address: "@address@",
     rewind_to_start_sec: 5,
     wrap_navigation: true,
     ignore_leading_the: true,
