@@ -116,7 +116,6 @@ in {
             vesktop = {
                 enable = true;
             };
-            # k9s.enable = true;
             zsh.initContent = lib.mkAfter ''
                 ${quote}/bin/quote
             '';
