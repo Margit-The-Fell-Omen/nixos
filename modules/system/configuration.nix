@@ -37,11 +37,6 @@
             };
         };
 
-        nixpkgs = {
-            config = {allowUnfree = true;};
-            overlays = [inputs.nix-firefox-addons.overlays.default inputs.nix-cachyos-kernel.overlays.default];
-        };
-
         environment.systemPackages = with pkgs; [
             git
 
