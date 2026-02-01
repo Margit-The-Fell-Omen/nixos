@@ -20,9 +20,6 @@
         programs.nixvim = {
             enable = true;
 
-            # needed to build treesitter parsers
-            extraPackages = with pkgs; [clang];
-
             opts = import ./opts-config.nix;
 
             globals = {
@@ -30,6 +27,7 @@
                 maplocalleader = " ";
             };
             keymaps = import ./keymaps-config.nix;
+
             autoGroups."highlight-yank".clear = true;
             autoCmd = [
                 {

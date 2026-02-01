@@ -12,24 +12,54 @@
                 settings = {
                     highlight.enable = true;
                     indent.enable = true;
+                    folding.enable = true;
                     autotag.enable = true;
-                    # ensure_installed = [
-                    #     "json"
-                    #     "markdown"
-                    #     "markdown_inline"
-                    #     "bash"
-                    #     "lua"
-                    #     "vim"
-                    #     "vimdoc"
-                    #
-                    #     "c"
-                    #     "cpp"
-                    #     "rust"
-                    #     "nix"
-                    #     "python"
-                    #     "nasm"
-                    # ];
                 };
+                grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+                    c
+                    cpp
+                    lua
+                    luadoc
+                    rust
+                    nix
+                    python
+                    asm
+                    nasm
+                    html
+                    superhtml
+                    css
+                    javascript
+                    typescript
+                    sql
+                    bash
+                    vim
+                    vimdoc
+
+                    markdown
+                    markdown-inline
+                    typst
+                    latex
+
+                    json
+                    json5
+                    yaml
+                    toml
+                    xml
+
+                    cmake
+                    make
+                    llvm
+                    linkerscript
+
+                    zsh
+                    proto
+                    dockerfile
+
+                    gitignore
+                    gitattributes
+                    git-rebase
+                    gitcommit
+                ];
             };
         };
     };
