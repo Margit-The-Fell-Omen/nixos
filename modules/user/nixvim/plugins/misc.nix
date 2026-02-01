@@ -32,6 +32,10 @@
                 enable = true;
                 lazyLoad.settings.event = "InsertEnter";
             };
+            ts-autotag = {
+                enable = true;
+                lazyLoad.settings.event = "InsertEnter";
+            };
             nvim-surround = {
                 enable = true;
                 lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];

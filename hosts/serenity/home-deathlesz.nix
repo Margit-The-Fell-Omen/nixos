@@ -78,22 +78,19 @@ in {
         };
 
         programs = {
-            mullvad-vpn = {
-                enable = true;
-                package = null;
-                settings = {
-                    autoConnect = true;
-                    startMinimized = true;
-                };
-            };
             zsh.initContent = lib.mkAfter ''
                 ${quote}/bin/quote
             '';
         };
 
         home.packages = with pkgs; [
+            jetbrains.idea
+
+            prismlauncher
             telegram-desktop
         ];
+
+        home.file.".ideavimrc".source = ./.ideavimrc;
 
         home.shellAliases = {
             ls = "eza --color=always";

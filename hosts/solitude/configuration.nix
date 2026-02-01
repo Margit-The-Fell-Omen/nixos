@@ -26,6 +26,8 @@
             docker.enable = true;
             virtualization.enable = true;
 
+            mullvad.enable = true;
+
             gaming.enable = true;
 
             styling = {
@@ -77,10 +79,6 @@
             asusd = {
                 enable = true;
                 enableUserService = true;
-            };
-            mullvad-vpn = {
-                enable = true;
-                package = pkgs.mullvad-vpn;
             };
         };
 

@@ -60,6 +60,15 @@
             # Enable Docker
             docker.enable = true;
 
+            # Enable virtualization
+            virtualization.enable = true;
+
+            # Enable Mullvad VPN
+            mullvad.enable = true;
+
+            # Enable gaming
+            gaming.enable = true;
+
             # Styling-related features
             styling = {
                 # Enable styling through Stylix

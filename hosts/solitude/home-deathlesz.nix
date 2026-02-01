@@ -105,14 +105,6 @@ in {
 
         programs = {
             obsidian.enable = true;
-            mullvad-vpn = {
-                enable = true;
-                package = null;
-                settings = {
-                    autoConnect = true;
-                    startMinimized = true;
-                };
-            };
             vesktop = {
                 enable = true;
             };

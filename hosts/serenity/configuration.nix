@@ -23,24 +23,19 @@
 
             docker.enable = true;
 
+            mullvad.enable = true;
+
             gaming.enable = true;
 
             styling = {
                 enable = true;
 
-                theme = "everforest-medium";
+                theme = "rose-pine-moon";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";
 
                 grub.theme = "cybergrub-2077";
-            };
-        };
-
-        services = {
-            mullvad-vpn = {
-                enable = true;
-                package = pkgs.mullvad-vpn;
             };
         };
 
