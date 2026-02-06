@@ -17,20 +17,19 @@
 
             pipewire.enable = true;
             bluetooth.enable = true;
+            mullvad.enable = true;
 
             sddm.enable = true;
             hyprland.enable = true;
 
-            docker.enable = true;
-
-            mullvad.enable = true;
-
             gaming.enable = true;
+
+            docker.enable = true;
 
             styling = {
                 enable = true;
 
-                theme = "rose-pine-moon";
+                theme = "tokyo-night";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";

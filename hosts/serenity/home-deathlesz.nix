@@ -34,6 +34,16 @@
             runHook postInstall
         '';
     };
+
+    nnedi3-nns128-win8x4 = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/bjin/mpv-prescalers/refs/heads/master/compute/nnedi3-nns128-win8x4.hook";
+        hash = "sha256-9DvgfvQlDx7iRpUBMM0BUrndbiTlAH47cOE2cpDIl7A=";
+    };
+
+    artcnn-c4f32 = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/Artoriuz/ArtCNN/refs/heads/main/GLSL/ArtCNN_C4F32.glsl";
+        hash = "sha256-93O85s9f5+Xl1Zmmle3UDfXNeiDD0IxNFk0HWR1b6tM=";
+    };
 in {
     config = {
         userSettings = {
@@ -75,12 +85,30 @@ in {
             monitor = [
                 "HDMI-A-1, 1920x1080@74.97, 0x0, 1"
             ];
+
+            exec-once = [
+                "[workspace 3 silent] obsidian"
+            ];
         };
 
         programs = {
+            obsidian.enable = true;
             zsh.initContent = lib.mkAfter ''
                 ${quote}/bin/quote
             '';
+
+            mpv = {
+                bindings = {
+                    g = "cycle-values glsl-shaders \"${nnedi3-nns128-win8x4}\" \"${artcnn-c4f32}\" \"\"";
+                };
+                defaultProfiles = ["high-quality"];
+                config = {
+                    vo = "gpu-next";
+
+                    slang = "enm,eng,en";
+                    alang = "jpn,ja";
+                };
+            };
         };
 
         home.packages = with pkgs; [
@@ -88,6 +116,8 @@ in {
 
             prismlauncher
             telegram-desktop
+
+            qbittorrent
         ];
 
         home.file.".ideavimrc".source = ./.ideavimrc;

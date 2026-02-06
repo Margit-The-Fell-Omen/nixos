@@ -23,7 +23,7 @@
                 isNormalUser = true;
                 extraGroups =
                     ["networkmanager"]
-                    ++ (lib.optionals (lib.any (x: x == username) config.hostSettings.adminUsers) ["wheel"])
+                    ++ (lib.optional (lib.any (x: x == username) config.hostSettings.adminUsers) "wheel")
                     ++ (lib.optional config.hostSettings.docker.enable "docker")
                     ++ (lib.optional config.hostSettings.virtualization.enable "libvirtd")
                     ++ (lib.optional config.hostSettings.gaming.enable "gamemode");
