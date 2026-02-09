@@ -112,15 +112,11 @@ in {
         };
 
         home.packages = with pkgs; [
-            jetbrains.idea
-
             prismlauncher
             telegram-desktop
 
             qbittorrent
         ];
-
-        home.file.".ideavimrc".source = ./.ideavimrc;
 
         home.shellAliases = {
             ls = "eza --color=always";

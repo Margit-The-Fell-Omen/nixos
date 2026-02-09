@@ -52,7 +52,9 @@ in {
             xdg.enable = true;
 
             hyprland.enable = true;
+
             nixvim.enable = true;
+            idea.enable = true;
 
             shells.defaultShell = "zsh";
             shells.zsh.enable = true;

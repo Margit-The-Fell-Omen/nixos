@@ -67,8 +67,6 @@
                 packages = with pkgs; [
                     nixd
                     inputs.alejandra.defaultPackage.${system}
-
-                    zsh
                 ];
             };
     };
