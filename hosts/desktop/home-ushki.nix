@@ -47,7 +47,7 @@
                 enable = true;
 
                 # Theme to use (optional, is inherited from host-wide configuration)
-                theme = "dune";
+                theme = "signalis";
 
                 # Set cursor theme (optional)
                 cursor = {

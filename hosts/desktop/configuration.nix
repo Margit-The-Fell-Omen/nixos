@@ -12,6 +12,8 @@
             pkgs.llvmPackages_20.systemLibcxxClang
             pkgs.qtcreator
             pkgs.steam
+            pkgs.libreoffice
+            pkgs.jetbrains.idea
         ];
 
         virtualisation.docker.enable = true;
@@ -69,7 +71,7 @@
                 enable = true;
 
                 # Host-wide theme to use, see `../../modules/themes/`
-                theme = "dune";
+                theme = "signalis";
 
                 # Host-wide font configuration
                 fonts = {
