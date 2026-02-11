@@ -14,6 +14,9 @@
             pkgs.steam
             pkgs.libreoffice
             pkgs.jetbrains.idea
+
+            pkgs.openvpn
+            pkgs.wireguard-tools
         ];
 
         virtualisation.docker.enable = true;
@@ -38,6 +41,9 @@
 
             # Users to grant admin (i.e. `sudo`) privileges
             adminUsers = ["ushki"];
+
+            mullvad.enable = true;
+            security.sudo-rs.enable = true;
 
             # Enable graphics support
             graphics.enable = true;
@@ -85,11 +91,8 @@
                 };
 
                 # Enable splash screen on load instead of raw TTY
-                plymouth.enable = false;
-
-                # Theme for splash screen, see `../../modules/system/styling/plymouth/themes/`
-                # By default, shows NixOS logo
-                # plymouth.theme = "ecorp-glitch";
+                plymouth.enable = true;
+                plymouth.theme = "arasaka";
 
                 # GRUB theme to use, see `../../modules/system/styling/grub/themes/`
                 grub.theme = "cybergrub-2077";
