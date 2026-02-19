@@ -1,10 +1,12 @@
 {pkgs, ...}: {
     config = {
         hostSettings = {
-            cachy = {
-                enable = true;
-                variant = "lto";
-                arch = "x86_64-v3";
+            kernel = {
+                cachy = {
+                    enable = true;
+                    variant = "lto";
+                    arch = "x86_64-v3";
+                };
             };
 
             users = ["deathlesz"];

@@ -116,6 +116,8 @@ in {
         };
 
         home.packages = with pkgs; [
+            dosbox-staging
+
             telegram-desktop
 
             libreoffice-qt-fresh

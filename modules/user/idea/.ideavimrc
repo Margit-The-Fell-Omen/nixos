@@ -2,6 +2,7 @@ set visualbell
 set noerrorbells
 set number
 set relativenumber
+set clipboard+=unnamed
 
 set which-key
 set notimeout

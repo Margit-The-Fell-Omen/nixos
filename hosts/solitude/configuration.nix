@@ -1,10 +1,14 @@
-{pkgs, ...}: {
+{config, ...}: {
     config = {
         hostSettings = {
-            cachy = {
-                enable = true;
-                variant = "lto";
-                arch = "x86_64-v3";
+            kernel = {
+                cachy = {
+                    enable = true;
+                    variant = "lto";
+                    arch = "x86_64-v3";
+                };
+
+                tty0tty.enable = true;
             };
 
             users = ["deathlesz"];
@@ -56,7 +60,7 @@
 
         services = {
             blocky = {
-                enable = true;
+                enable = false;
                 settings = {
                     upstreams.groups.default = [
                         "https://1.1.1.1/dns-query#cloudflare-dns.com"
@@ -82,9 +86,9 @@
             };
         };
 
-        networking.nameservers = [
-            "127.0.0.1"
-        ];
+        # networking.nameservers = [
+        #     "127.0.0.1"
+        # ];
 
         system.stateVersion = "25.05";
     };
