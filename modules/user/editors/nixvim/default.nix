@@ -31,6 +31,20 @@
 
             autoGroups."highlight-yank".clear = true;
             autoCmd = [
+                # for MASM
+                {
+                    event = ["FileType"];
+                    pattern = ["masm" "asm"];
+                    callback.__raw = ''
+                        function()
+                          vim.bo.tabstop = 8
+                          vim.bo.shiftwidth = 8
+                          vim.bo.expandtab = false
+                          vim.bo.commentstring = "; %s"
+                        end
+                    '';
+                }
+
                 {
                     event = "TextYankPost";
                     desc = "highlight when yanking text";

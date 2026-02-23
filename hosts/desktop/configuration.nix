@@ -15,12 +15,16 @@
             pkgs.libreoffice
             pkgs.jetbrains.idea
 
-            pkgs.openvpn
-            pkgs.wireguard-tools
+            pkgs.dosbox-staging
+            pkgs.minicom
+            pkgs.picocom
+            pkgs.socat
+            pkgs.jq
         ];
 
         virtualisation.docker.enable = true;
-        users.users.ushki.extraGroups = ["docker"];
+        # Change to docker for docker
+        users.users.ushki.extraGroups = ["dialout"];
 
         # 1. Allow unfree packages (Steam is proprietary)
         nixpkgs.config.allowUnfree = true;
