@@ -41,9 +41,10 @@ in {
         };
     };
 
-    config = lib.mkIf cfg.enable {
-        boot.kernelPackages = pkgs.cachyosKernels."${kernel}";
-        hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+    config = lib.mkMerge [
+        (lib.mkIf cfg.cachy.enable {
+            boot.kernelPackages = pkgs.cachyosKernels."${kernel}";
+            hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
 
             services.scx = {
                 enable = true;

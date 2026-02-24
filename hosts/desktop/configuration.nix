@@ -16,10 +16,11 @@
             pkgs.jetbrains.idea
 
             pkgs.dosbox-staging
-            pkgs.minicom
             pkgs.picocom
             pkgs.socat
             pkgs.jq
+            pkgs.unrar
+            pkgs.postgresql_16
         ];
 
         virtualisation.docker.enable = true;
@@ -40,6 +41,34 @@
 
         hardware.nvidia-container-toolkit.enable = lib.mkForce false;
         hostSettings = {
+            kernel = {
+                cachy = {
+                    enable = true;
+                    variant = "lto";
+                    arch = "x86_64-v3";
+                };
+
+                tty0tty.enable = true;
+            };
+
+            postgresql = {
+                enable = true;
+                port = 5432;
+                databases = ["mydb" "testdb"];
+                users = [
+                    {
+                        name = "myuser";
+                        password = "mypassword";
+                        databases = ["mydb"];
+                    }
+                    {
+                        name = "testuser";
+                        password = "testpass";
+                        databases = ["testdb"];
+                    }
+                ];
+            };
+
             # Users to create on the machine (you will need to create `home-{username}.nix` files for each such user)
             users = ["ushki"];
 
