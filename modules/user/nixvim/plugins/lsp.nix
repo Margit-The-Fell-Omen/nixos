@@ -12,19 +12,8 @@
                 # superhtml.enable = true;
                 # emmet_language_server.enable = true;
                 # cssls.enable = true;
-
-                pylsp = {
-                    enable = true;
-                    settings = {
-                        plugins = {
-                            ruff.enabled = true;
-                            isort.enabled = true;
-                            pylsp_mypy.enabled = true;
-                        };
-
-                        pythonPackage = pkgs.python312;
-                    };
-                };
+                ruff.enable = true;
+                ty.enable = true;
 
                 nixd = {
                     enable = true;
@@ -82,7 +71,9 @@
                 rust_analyzer.enable = true;
                 # tinymist.enable = true;
                 clangd.enable = true;
-                pylsp.enable = true;
+
+                ruff.enable = true;
+                ty.enable = true;
             };
             keymaps = [
                 {

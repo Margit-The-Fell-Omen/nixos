@@ -12,7 +12,7 @@
                 notify_on_error = false;
                 formatters_by_ft = {
                     lua = ["stylua"];
-                    python = ["ruff" "isort"];
+                    python = ["ruff_format" "ruff_organize_imports"];
                     rust = ["rustfmt"];
                     typst = ["typstyle"];
                     nix = ["alejandra"];
