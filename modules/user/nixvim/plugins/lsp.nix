@@ -2,7 +2,6 @@
     config,
     lib,
     nixvimLib,
-    pkgs,
     ...
 }: {
     config.programs.nixvim = lib.mkIf config.userSettings.nixvim.enable {
@@ -14,6 +13,7 @@
                 # cssls.enable = true;
                 ruff.enable = true;
                 ty.enable = true;
+                terraformls.enable = true;
 
                 nixd = {
                     enable = true;
@@ -67,13 +67,14 @@
                 # superhtml.enable = true;
                 # emmet_language_server.enable = true;
                 # cssls.enable = true;
+                terraformls.enable = true;
                 nixd.enable = true;
                 rust_analyzer.enable = true;
                 # tinymist.enable = true;
                 clangd.enable = true;
 
-                ruff.enable = true;
                 ty.enable = true;
+                ruff.enable = true;
             };
             keymaps = [
                 {

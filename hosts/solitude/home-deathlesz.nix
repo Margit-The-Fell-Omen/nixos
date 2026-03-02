@@ -85,7 +85,6 @@ in {
             };
         };
 
-        # NOTE: comment if using dual monitors (or add nVidia GPU too?)
         home.sessionVariables = {
             AQ_DRM_DEVICES = "/dev/dri/amd-igpu";
         };
@@ -93,7 +92,6 @@ in {
         wayland.windowManager.hyprland.settings = {
             monitor = [
                 "eDP-1, 1920x1080@360.01, 0x0, 1"
-                # "HDMI-A-1, 1920x1080@60.00, -1920x0, 1"
             ];
 
             bind = [
@@ -107,15 +105,16 @@ in {
 
         programs = {
             obsidian.enable = true;
-            vesktop = {
-                enable = true;
-            };
+            vesktop.enable = true;
+
             zsh.initContent = lib.mkAfter ''
                 ${quote}/bin/quote
             '';
         };
 
         home.packages = with pkgs; [
+            qbittorrent
+
             dosbox-staging
 
             telegram-desktop

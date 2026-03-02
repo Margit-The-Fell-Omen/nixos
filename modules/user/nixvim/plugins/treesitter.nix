@@ -50,6 +50,7 @@
                     make
                     llvm
                     linkerscript
+                    terraform
 
                     zsh
                     proto
