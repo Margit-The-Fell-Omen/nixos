@@ -1,7 +1,6 @@
 {
     config,
     lib,
-    pkgs,
     ...
 }: {
     options = {
@@ -13,7 +12,12 @@
     config = lib.mkIf config.userSettings.git.enable {
         programs = {
             git.enable = true;
-            lazygit.enable = true;
+            lazygit = {
+                enable = true;
+                settings = {
+                    git.overrideGpg = true;
+                };
+            };
         };
     };
 }
