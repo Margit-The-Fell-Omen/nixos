@@ -11,6 +11,10 @@
         };
     };
 
+    imports = [
+        ./music.nix
+    ];
+
     config = lib.mkIf config.userSettings.misc.enable {
         programs = {
             feh.enable = true;
@@ -20,8 +24,8 @@
                 enable = true;
                 # needed for btop to show nVidia & AMD GPUs
                 package = pkgs.btop.override {
-                    cudaSupport = osConfig.hostSettings.graphics.nvidia.enable;
-                    rocmSupport = osConfig.hostSettings.graphics.amd.enable;
+                    cudaSupport = osConfig.hostSettings.hardware.graphics.nvidia.enable;
+                    rocmSupport = osConfig.hostSettings.hardware.graphics.amd.enable;
                 };
                 settings = {
                     theme_background = true;
@@ -30,7 +34,7 @@
                     update_ms = 100;
                 };
             };
-            lazydocker = lib.mkIf osConfig.hostSettings.docker.enable {
+            lazydocker = lib.mkIf osConfig.hostSettings.virtualization.docker.enable {
                 enable = true;
             };
         };

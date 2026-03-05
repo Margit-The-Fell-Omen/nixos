@@ -2,7 +2,6 @@
     config,
     lib,
     pkgs,
-    inputs,
     ...
 }: let
     toList = x:
@@ -59,24 +58,27 @@ in {
     };
 
     config = lib.mkIf config.hostSettings.styling.enable {
-        fonts.fontDir.enable = true;
-        fonts.fontconfig = {
-            enable = true;
-            defaultFonts = {
-                serif = toList cfg.serif.name;
-                sansSerif = toList cfg.sansSerif.name;
-                monospace = toList cfg.monospace.name;
-                emoji = toList cfg.emoji.name;
+        fonts = {
+            fontconfig = {
+                enable = true;
+                defaultFonts = {
+                    serif = toList cfg.serif.name;
+                    sansSerif = toList cfg.sansSerif.name;
+                    monospace = toList cfg.monospace.name;
+                    emoji = toList cfg.emoji.name;
+                };
             };
+
+            packages = lib.concatLists [
+                (toList cfg.serif.package)
+                (toList cfg.sansSerif.package)
+                (toList cfg.monospace.package)
+                (toList cfg.emoji.package)
+
+                [pkgs.corefonts]
+            ];
+
+            fontDir.enable = true;
         };
-
-        fonts.packages = lib.concatLists [
-            (toList cfg.serif.package)
-            (toList cfg.sansSerif.package)
-            (toList cfg.monospace.package)
-            (toList cfg.emoji.package)
-
-            [pkgs.corefonts]
-        ];
     };
 }

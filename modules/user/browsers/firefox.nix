@@ -4,15 +4,27 @@
     lib,
     pkgs,
     ...
-}: {
+}: let
+    package = pkgs.firefox;
+in {
     options = {
         userSettings = {
-            browsers.firefox.enable = lib.mkEnableOption "Firefox";
+            browsers.firefox = {
+                enable = lib.mkEnableOption "Firefox";
+                path = lib.mkOption {
+                    default = "${package}/share/applications/firefox.desktop";
+                    internal = true;
+                    visible = false;
+                    readOnly = true;
+                };
+            };
         };
     };
 
     config = lib.mkIf config.userSettings.browsers.firefox.enable {
         programs.firefox = {
+            inherit package;
+
             enable = true;
             profiles.default = {
                 isDefault = true;

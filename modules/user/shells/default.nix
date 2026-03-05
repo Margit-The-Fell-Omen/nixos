@@ -1,21 +1,17 @@
 {
-    config,
     lib,
     pkgs,
+    osConfig,
+    username,
     ...
 }: {
-    options = {
-        userSettings = {
-            shells.defaultShell = lib.mkOption {
-                description = "Default shell to use";
-                type = lib.types.enum ["zsh"];
-                default = "zsh";
-            };
-        };
-    };
+    imports = [
+        ./zsh.nix
+    ];
 
     config = {
-        userSettings.shells.zsh.enable = config.userSettings.shells.defaultShell == "zsh";
+        # maybe a better check?
+        userSettings.shells.zsh.enable = lib.mkIf (osConfig.users.users.${username}.shell == pkgs.zsh) true;
 
         home.packages = with pkgs; [
             ripgrep

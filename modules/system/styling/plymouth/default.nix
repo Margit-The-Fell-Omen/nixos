@@ -12,10 +12,10 @@
 in {
     options = {
         hostSettings = {
-            styling = {
-                plymouth.enable = lib.mkEnableOption "plymouth";
-                plymouth.theme = lib.mkOption {
-                    type = lib.types.enum (["stylix"] ++ customThemes ++ defaultThemes);
+            styling.plymouth = {
+                enable = lib.mkEnableOption "plymouth";
+                theme = lib.mkOption {
+                    type = lib.types.enum (["stylix"] ++ defaultThemes ++ customThemes);
                     description = "Plymouth theme to use";
                     default = "stylix";
                 };
@@ -45,9 +45,9 @@ in {
                 inherit theme;
 
                 enable = true;
-                themePackages = lib.optionals (theme != "stylix") [
-                    (pkgs.callPackage ./themes/${theme}/theme-dni.nix {})
-                ];
+                themePackages =
+                    lib.optional (theme != "stylix")
+                    (pkgs.callPackage ./themes/${theme}/theme.nix {});
             };
         };
 

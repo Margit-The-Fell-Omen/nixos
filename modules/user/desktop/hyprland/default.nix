@@ -1,24 +1,19 @@
 {
-    config,
     osConfig,
     lib,
-    libM,
     pkgs,
     ...
 }: {
-    options = {
-        userSettings = {
-            hyprland.enable = lib.mkEnableOption "Hyprland";
-        };
-    };
+    imports = [
+        ./hypridle.nix
+        ./hyprland.nix
+        ./hyprlock.nix
+        ./hyprsunset.nix
+    ];
 
-    config = libM.requireHostSettings osConfig {
-        require = ["hyprland" "graphics"];
-        message = "Hyprland must also be enable on the system level";
-    } (lib.mkIf config.userSettings.hyprland.enable {
-        # config = lib.mkIf config.userSettings.hyprland.enable ({
+    config = lib.mkIf osConfig.hostSettings.desktop.hyprland.enable {
         xdg.portal = {
-            # HACK: ? for some reason `lib.mkForce` is required here
+            # HACK: for some reason `lib.mkForce` is required here
             enable = lib.mkForce true;
             extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
             configPackages = [pkgs.hyprland];
@@ -27,14 +22,7 @@
             };
         };
 
-        services = {
-            hyprpaper.enable = true;
-        };
-
-        home.packages = with pkgs; [
-            grimblast
-            satty
-        ];
+        services.hyprpaper.enable = true;
 
         home.sessionVariables =
             {
@@ -52,7 +40,7 @@
                 GTK_USE_PORTALS = 1;
             }
             // (
-                if osConfig.hostSettings.graphics.nvidia.enable
+                if osConfig.hostSettings.hardware.graphics.nvidia.enable
                 then {
                     WLR_NO_HARDWARE_CURSORS = 1;
                     WLR_RENDERER = "vulkan";
@@ -62,5 +50,5 @@
                 }
                 else {}
             );
-    });
+    };
 }

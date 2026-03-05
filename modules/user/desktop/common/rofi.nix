@@ -1,8 +1,6 @@
 {
     config,
     lib,
-    libM,
-    pkgs,
     osConfig,
     ...
 }: let
@@ -20,11 +18,11 @@
         then x
         else [x];
     font = {
-        name = builtins.head (toList config.userSettings.styling.fonts.monospace.name);
-        size = builtins.head (toList config.userSettings.styling.fonts.monospace.size);
+        name = builtins.head osConfig.hostSettings.styling.fonts.monospace.name;
+        size = builtins.head osConfig.hostSettings.styling.fonts.monospace.size;
     };
 in {
-    config = lib.mkIf config.userSettings.hyprland.enable {
+    config = lib.mkIf osConfig.hostSettings.desktop.enable {
         programs.rofi = {
             enable = true;
             font = "${font.name} 12";
@@ -72,11 +70,14 @@ in {
                 };
             };
         };
-        home.file."${config.home.homeDirectory}/.config/rofi/launcher.rasi".source = ./launcher.rasi;
-        home.file."${config.home.homeDirectory}/.config/rofi/powermenu.rasi".source = ./powermenu.rasi;
-        home.file."${config.home.homeDirectory}/.config/rofi/powermenu.sh" = {
-            source = ./powermenu.sh;
-            executable = true;
+
+        xdg.configFile = {
+            "rofi/launcher.rasi".source = ./launcher.rasi;
+            "rofi/powermenu.rasi".source = ./powermenu.rasi;
+            "rofi/powermenu.sh" = {
+                source = ./powermenu.sh;
+                executable = true;
+            };
         };
 
         # NOTE: custom implementation is needed due to stylix putting config for elements

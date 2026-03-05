@@ -6,9 +6,6 @@
     polarity = "dark";
     background = "https://raw.githubusercontent.com/zhichaoh/catppuccin-wallpapers/refs/heads/main/misc/windows-error.jpg";
     backgroundHash = "sha256-Yr31nKWS1yLkxs6GxYQ6jHwKgJ+b9iqPcZbBY0suGLg=";
-    # NOTE: can't see comments with 0.6 opacity in kitty
-    # backgroundUrl = "https://images7.alphacoders.com/126/1266081.jpg";
-    # backgroundSha256 = "sha256-wCXKHemZYxVYnWVwh6Ng/nGlUroRotXgvcOdSfqRPeo=";
     base00 = "1e1e2e";
     base01 = "181825";
     base02 = "313244";

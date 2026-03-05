@@ -1,19 +1,29 @@
 {
     config,
     lib,
-    pkgs,
     ...
-}: {
+}: let
+    cfg = config.hostSettings.hardware.graphics;
+in {
+    imports = [
+        ./amd.nix
+        ./nvidia.nix
+        ./virtio.nix
+    ];
+
     options = {
-        hostSettings.graphics.enable = lib.mkEnableOption "graphics support";
+        hostSettings.hardware.graphics.enable = lib.mkOption {
+            default = cfg.nvidia.enable || cfg.amd.enable || cfg.virtio.enable;
+            internal = true;
+            visible = false;
+            readOnly = true;
+        };
     };
 
-    config = lib.mkIf config.hostSettings.graphics.enable {
-        hardware = {
-            graphics = {
-                enable = true;
-                enable32Bit = true;
-            };
+    config = lib.mkIf cfg.enable {
+        hardware.graphics = {
+            enable = true;
+            enable32Bit = true;
         };
     };
 }

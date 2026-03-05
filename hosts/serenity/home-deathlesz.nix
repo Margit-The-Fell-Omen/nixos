@@ -49,11 +49,7 @@ in {
         userSettings = {
             xdg.enable = true;
 
-            hyprland.enable = true;
             nixvim.enable = true;
-
-            shells.defaultShell = "zsh";
-            shells.zsh.enable = true;
 
             browsers.defaultBrowser = "firefox";
             browsers.firefox.enable = true;
@@ -63,8 +59,6 @@ in {
 
             security.enable = true;
             git.enable = true;
-
-            styling.enable = true;
 
             misc.enable = true;
         };

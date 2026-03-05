@@ -7,15 +7,13 @@
     colors = config.lib.stylix.colors;
     theme = pkgs.sddm-astronaut.override {
         themeConfig = {
-            # FIXME: unfortunately, background will only be based on the one
-            # in the theme, because backgrounds are per-user and this is not :(
             Background = config.stylix.image;
 
             # FullBlur = "true";
             # BlurMax = "64";
             # Blur = "2.0";
             FormPosition = "right";
-            # HideVirtualKeyboard = "true";
+            HideVirtualKeyboard = "true";
 
             HeaderTextColor = "#${colors.base05}";
             DateTextColor = "#${colors.base05}";
@@ -70,7 +68,6 @@ in {
             wayland.enable = true;
             autoNumlock = true;
             theme = "${theme}/share/sddm/themes/sddm-astronaut-theme";
-            # NOTE: needed anyway even though theme is referenced above
             extraPackages = [
                 theme
             ];

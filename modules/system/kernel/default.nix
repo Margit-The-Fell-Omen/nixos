@@ -54,7 +54,7 @@ in {
 
         (lib.mkIf cfg.tty0tty.enable {
             boot = {
-                extraModulePackages = [(config.boot.kernelPackages.callPackage ./tty0tty-dni.nix {})];
+                extraModulePackages = [(config.boot.kernelPackages.callPackage ./tty0tty.nix {})];
                 kernelModules = ["tty0tty"];
             };
 

@@ -1,7 +1,6 @@
 {
     config,
     lib,
-    pkgs,
     ...
 }: {
     options = {
@@ -13,6 +12,10 @@
             };
         };
     };
+
+    imports = [
+        ./kitty.nix
+    ];
 
     config = {
         userSettings.terminals.kitty.enable = lib.mkIf (config.userSettings.terminals.defaultTerminal == "kitty") true;

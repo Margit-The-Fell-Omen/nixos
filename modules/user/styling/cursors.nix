@@ -1,9 +1,8 @@
 {
     config,
-    osConfig,
     lib,
     pkgs,
-    inputs,
+    osConfig,
     ...
 }: {
     options = {
@@ -29,7 +28,7 @@
         };
     };
 
-    config = lib.mkIf config.userSettings.styling.enable {
+    config = lib.mkIf osConfig.hostSettings.styling.enable {
         gtk.cursorTheme = config.userSettings.styling.cursor;
 
         home.sessionVariables = {

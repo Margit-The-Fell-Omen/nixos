@@ -1,21 +1,28 @@
 {
-    config,
+    osConfig,
     lib,
     pkgs,
     ...
 }: {
-    config = lib.mkIf config.userSettings.hyprland.enable {
+    imports = [
+        ./rofi.nix
+        ./waybar.nix
+    ];
+
+    config = lib.mkIf osConfig.hostSettings.desktop.enable {
         home.packages = with pkgs; [
             wl-clipboard
-            grim
-            slurp
+            grimblast
+            satty
         ];
 
-        programs.yazi = {
-            enable = true;
-            shellWrapperName = "y";
-        };
+        # not strictly necessary, i don't really use it
+        # programs.yazi = {
+        #     enable = true;
+        #     shellWrapperName = "y";
+        # };
 
+        # my notification daemon of choice
         services = {
             mako = {
                 enable = true;

@@ -2,14 +2,10 @@
     scheme = "Nord";
     slug = "nord";
     author = "Artic Ice Studio (https://github.com/arcticicestudio)";
-    credits = "?";
     description = "An arctic, north-bluish color palette.";
     polarity = "dark";
     background = "https://raw.githubusercontent.com/dxnst/nord-backgrounds/refs/heads/main/avogadr.io/1920x1080/caffeine.png";
     backgroundHash = "sha256-Lpcwaa6MDtkO0T1uhjCxoUoU4sNqY7xNm913UXT00hA=";
-    # NOTE: can't see comments with 0.6 opacity in kitty
-    # backgroundUrl = "https://wallpaperaccess.com/full/11356475.png";
-    # backgroundSha256 = "sha256-VtpMqXthdxRDH+lb/KIC/PECwztElc9mSINCmTbiyP4=";
     base00 = "#2E3440";
     base01 = "#3B4252";
     base02 = "#434C5E";

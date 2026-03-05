@@ -1,37 +1,41 @@
-{pkgs, ...}: {
+{...}: {
     config = {
         hostSettings = {
-            kernel = {
-                cachy = {
-                    enable = true;
-                    variant = "lto";
-                    arch = "x86_64-v3";
-                };
+            kernel.cachy = {
+                enable = true;
+                variant = "lto";
+                arch = "x86_64-v3";
             };
 
-            users = ["deathlesz"];
-            adminUsers = ["deathlesz"];
+            users = [
+                {
+                    name = "deathlesz";
+                    isAdmin = true;
+                }
+            ];
 
             security.sudo-rs.enable = true;
 
-            graphics.enable = true;
-            graphics.nvidia.enable = true;
+            hardware = {
+                graphics.nvidia.enable = true;
+                bluetooth.enable = true;
+            };
 
-            pipewire.enable = true;
-            bluetooth.enable = true;
-            mullvad.enable = true;
+            audio.enable = true;
 
             sddm.enable = true;
-            hyprland.enable = true;
+            desktop.hyprland.enable = true;
+
+            virtualization.docker.enable = true;
+
+            mullvad.enable = true;
 
             gaming.enable = true;
-
-            docker.enable = true;
 
             styling = {
                 enable = true;
 
-                theme = "tokyo-night";
+                theme = "everforest-medium";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";

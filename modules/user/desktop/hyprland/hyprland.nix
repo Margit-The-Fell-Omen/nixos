@@ -2,32 +2,25 @@
     config,
     osConfig,
     lib,
-    libM,
     ...
 }: {
-    config = libM.requireHostSettings osConfig {
-        require = ["hyprland" "graphics"];
-        message = "Hyprland must also be enable on the system level";
-    } (lib.mkIf config.userSettings.hyprland.enable {
+    config = lib.mkIf osConfig.hostSettings.desktop.hyprland.enable {
         wayland.windowManager.hyprland = {
             enable = true;
             package = null;
             portalPackage = null;
             settings = {
+                "$browser" = "${config.userSettings.browsers.defaultBrowser}";
                 "$terminal" = "${config.userSettings.terminals.defaultTerminal}";
                 "$fileManager" = "${config.userSettings.terminals.defaultTerminal} --class yazi -- yazi";
-                "$menu" = "rofi -show drun -theme ${config.home.homeDirectory}/.config/rofi/launcher.rasi";
+                "$menu" = "rofi -show drun -theme ${config.xdg.configHome}/rofi/launcher.rasi";
 
                 exec-once = [
                     "waybar"
                     "hyprctl setcursor ${config.userSettings.styling.cursor.name} ${toString config.userSettings.styling.cursor.size}"
-                    "[workspace 1 silent] firefox"
-                    "[workspace 2 silent] kitty"
+                    "[workspace 1 silent] $browser"
+                    "[workspace 2 silent] $terminal"
                 ];
-
-                debug = {
-                    disable_logs = false;
-                };
 
                 general = {
                     gaps_in = 5;
@@ -119,7 +112,7 @@
                     swallow_regex = "^(${config.userSettings.terminals.defaultTerminal})$";
                 };
 
-                cursor = lib.mkIf osConfig.hostSettings.graphics.nvidia.enable {
+                cursor = lib.mkIf osConfig.hostSettings.hardware.graphics.nvidia.enable {
                     no_hardware_cursors = 1;
                 };
 
@@ -150,13 +143,8 @@
 
                     # rmpc & cava
                     "float on, size (monitor_w*0.6) (monitor_h*0.5), center on, match:class ^rmpc$"
-                    # "size 60% 50%, match:class ^rmpc$"
-
                     "float on, size (monitor_w*0.3) (monitor_h*0.2), center on, match:class ^cava$"
-                    # "size 30% 20%, match:class ^cava$"
-
                     "float on, size (monitor_w*0.8) (monitor_h*0.8), center on, match:class ^yazi$"
-                    # "size 80% 80%, match:class ^yazi$"
                 ];
 
                 "$mainMod" = "SUPER";
@@ -203,29 +191,14 @@
 
                     # custom
 
-                    # open clipboard history
-                    # "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-
                     # move windows with J, K (left, right) and Shift+J, K (down, up)
                     "$mainMod, J, movewindow, l"
                     "$mainMod, K, movewindow, r"
                     "$mainMod SHIFT, J, movewindow, d"
                     "$mainMod SHIFT, K, movewindow, u"
 
-                    # switch between 60 Hz and 360 Hz
-                    # ",XF86Launch4, exec, hyprctl keyword monitor eDP-1,1920x1080@60,0x0,1"
-                    # "SHIFT,XF86Launch4, exec, hyprctl keyword monitor eDP-1,1920x1080@360,0x0,1"
-
-                    # wallpapers
-                    # ", XF86Launch1, exec, ~/.config/hypr/random_wallpapers.sh"
-                    # "SHIFT, XF86Launch1, exec, ~/.config/hypr/animated_wallpapers.sh"
-
                     # power menu
                     "$mainMod, KP_ENTER, exec, ~/.config/rofi/powermenu.sh"
-
-                    # blue light filter
-                    "$mainMod, KP_ADD, exec, hyprsunset --temperature 4500"
-                    "$mainMod SHIFT, KP_ADD, exec, killall hyprsunset"
 
                     # screenshot
                     # just select
@@ -238,9 +211,6 @@
                     # full screen
                     "ALT, PRINT, exec, grimblast -n -f copy screen"
                     "$mainMod + ALT, PRINT, exec, grimblast -n -f save screen ~/\$(date '+%Y-%m-%d_%H:%M:%S').png"
-
-                    # bluetooth
-                    # "$mainMod, B, exec, ~/.config/hypr/rofi-bluetooth.sh"
 
                     # lock
                     "$mainMod, L, exec, hyprlock"
@@ -280,5 +250,5 @@
 
             xwayland.enable = true;
         };
-    });
+    };
 }

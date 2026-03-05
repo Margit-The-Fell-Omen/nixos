@@ -12,10 +12,6 @@ configuration {
     show-icons:                 false;
 }
 
-/*****----- Global Properties -----*****/
-// @import                          "shared/colors.rasi"
-// @import                          "shared/fonts.rasi"
-
 @import "config.rasi"
 
 /*****----- Main Window -----*****/

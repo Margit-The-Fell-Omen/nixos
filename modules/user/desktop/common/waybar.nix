@@ -1,9 +1,9 @@
 {
-    config,
     lib,
+    osConfig,
     ...
 }: {
-    config = lib.mkIf config.userSettings.hyprland.enable {
+    config = lib.mkIf osConfig.hostSettings.desktop.enable {
         programs.waybar = {
             enable = true;
 
@@ -191,7 +191,7 @@
                     "wlr/taskbar" = {
                         format = "{icon}";
                         icon-size = 16;
-                        # icon-theme = "${config.gtk.iconTheme.name}"; # null ;(
+                        # icon-theme = "${config.gtk.iconTheme.name}"; # NOTE: null ;(
                         tooltip-format = "{title}";
                         on-click = "activate";
                         on-click-middle = "close";
@@ -201,10 +201,11 @@
                     };
                 };
             };
+
             style = lib.mkAfter (builtins.readFile ./waybar.css);
         };
 
-        home.file."${config.home.homeDirectory}/.config/waybar/bluetooth-display.sh" = {
+        xdg.configFile."waybar/bluetooth-display.sh" = {
             source = ./waybar-bluetooth-display.sh;
             executable = true;
         };

@@ -2,17 +2,15 @@
     config,
     osConfig,
     lib,
-    pkgs,
     ...
 }: let
     colors = config.lib.stylix.colors;
-    localState = "${config.home.homeDirectory}/.local/state/mpd";
 in {
     config = lib.mkIf config.userSettings.misc.enable {
         programs = {
             cava = {
                 enable = true;
-                settings = lib.mkIf osConfig.hostSettings.pipewire.enable {
+                settings = lib.mkIf osConfig.hostSettings.audio.enable {
                     input.method = "pipewire";
                     input.source = "auto";
                     color = {

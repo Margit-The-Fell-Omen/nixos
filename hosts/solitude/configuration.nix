@@ -11,24 +11,35 @@
                 tty0tty.enable = true;
             };
 
-            users = ["deathlesz"];
-            adminUsers = ["deathlesz"];
+            users = [
+                {
+                    name = "deathlesz";
+                    isAdmin = true;
+                }
+            ];
 
             security.sudo-rs.enable = true;
 
-            graphics.enable = true;
-            graphics.nvidia.enable = true;
-            graphics.amd.enable = true;
-            laptop.enable = true;
+            hardware = {
+                graphics = {
+                    nvidia.enable = true;
+                    amd.enable = true;
+                };
 
-            pipewire.enable = true;
-            bluetooth.enable = true;
+                bluetooth.enable = true;
+
+                laptop.enable = true;
+            };
+
+            audio.enable = true;
 
             sddm.enable = true;
-            hyprland.enable = true;
+            desktop.hyprland.enable = true;
 
-            docker.enable = true;
-            virtualization.enable = true;
+            virtualization = {
+                libvirt.enable = true;
+                docker.enable = true;
+            };
 
             mullvad.enable = true;
 
