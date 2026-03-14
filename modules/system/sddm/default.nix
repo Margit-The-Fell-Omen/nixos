@@ -10,6 +10,11 @@
         themeConfig = {
             Background = config.stylix.image;
 
+            # HACK: the name of the theme here does not matter as it does not exist at system-level
+            # but it makes SDDM actually show cursor
+            CursorTheme = "Quintom_Snow";
+            CursorSize = 24;
+
             # FullBlur = "true";
             # BlurMax = "64";
             # Blur = "2.0";
