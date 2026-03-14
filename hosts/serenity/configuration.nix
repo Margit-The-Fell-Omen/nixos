@@ -26,7 +26,6 @@
             sddm.enable = true;
             desktop = {
                 hyprland.enable = true;
-                niri.enable = true;
             };
 
             virtualization.docker.enable = true;
