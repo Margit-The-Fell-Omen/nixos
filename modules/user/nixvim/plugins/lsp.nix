@@ -36,30 +36,30 @@
                     installRustc = false;
                     installRustfmt = false;
                 };
-                # tinymist = {
-                #     enable = true;
-                #     settings = {
-                #         formatterMode = "typstyle";
-                #         exportPdf = "onSave";
-                #     };
-                #     onAttach.function = ''
-                #         vim.keymap.set("n", "<leader>tp", function()
-                #         	client:exec_cmd({
-                #         		title = "pin",
-                #         		command = "tinymist.pinMain",
-                #         		arguments = { vim.api.nvim_buf_get_name(0) },
-                #         	}, { bufnr = bufnr })
-                #         end, { desc = "[T]inymist [P]in", noremap = true })
-                #
-                #         vim.keymap.set("n", "<leader>tu", function()
-                #         	client:exec_cmd({
-                #         		title = "unpin",
-                #         		command = "tinymist.pinMain",
-                #         		arguments = { vim.v.null },
-                #         	}, { bufnr = bufnr })
-                #         end, { desc = "[T]inymist [U]npin", noremap = true })
-                #     '';
-                # };
+                tinymist = {
+                    enable = true;
+                    settings = {
+                        formatterMode = "typstyle";
+                        exportPdf = "onSave";
+                    };
+                    onAttach.function = ''
+                        vim.keymap.set("n", "<leader>tp", function()
+                        	client:exec_cmd({
+                        		title = "pin",
+                        		command = "tinymist.pinMain",
+                        		arguments = { vim.api.nvim_buf_get_name(0) },
+                        	}, { bufnr = bufnr })
+                        end, { desc = "[T]inymist [P]in", noremap = true })
+
+                        vim.keymap.set("n", "<leader>tu", function()
+                        	client:exec_cmd({
+                        		title = "unpin",
+                        		command = "tinymist.pinMain",
+                        		arguments = { vim.v.null },
+                        	}, { bufnr = bufnr })
+                        end, { desc = "[T]inymist [U]npin", noremap = true })
+                    '';
+                };
             };
         };
         lsp = {
@@ -70,7 +70,7 @@
                 terraformls.enable = true;
                 nixd.enable = true;
                 rust_analyzer.enable = true;
-                # tinymist.enable = true;
+                tinymist.enable = true;
                 clangd.enable = true;
 
                 ty.enable = true;

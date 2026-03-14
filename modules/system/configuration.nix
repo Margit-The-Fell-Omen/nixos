@@ -56,7 +56,7 @@
         programs.nh = {
             enable = true;
             clean = {
-                enable = true;
+                enable = false;
                 dates = "monthly";
                 extraArgs = "--keep 20 --keep-since 7d --optimise";
             };
