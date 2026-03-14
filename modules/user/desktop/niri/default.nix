@@ -4,6 +4,10 @@
     pkgs,
     ...
 }: {
+    imports = [
+        ./niri.nix
+    ];
+
     config = lib.mkIf osConfig.hostSettings.desktop.niri.enable {
         # screenshotting
         home.packages = with pkgs; [
@@ -15,8 +19,6 @@
             {
                 # some compatibility?
                 NIXOS_OZONE_WL = 1;
-                XDG_CURRENT_DESKTOP = "Niri";
-                XDG_SESSION_DESKTOP = "Niri";
                 XDG_SESSION_TYPE = "wayland";
                 QT_QPA_PLATFORM = "wayland;xcb";
                 OZONE_PLATFORM = "wayland";

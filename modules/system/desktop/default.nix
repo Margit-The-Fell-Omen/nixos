@@ -20,4 +20,8 @@ in {
         ./hyprland.nix
         ./niri.nix
     ];
+
+    config = lib.mkIf config.hostSettings.desktop.enable {
+        services.gnome.gnome-keyring.enable = true;
+    };
 }

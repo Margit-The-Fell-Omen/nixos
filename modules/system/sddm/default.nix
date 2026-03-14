@@ -5,6 +5,7 @@
     ...
 }: let
     colors = config.lib.stylix.colors;
+
     theme = pkgs.sddm-astronaut.override {
         themeConfig = {
             Background = config.stylix.image;

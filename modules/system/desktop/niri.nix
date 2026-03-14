@@ -10,6 +10,6 @@
     };
 
     config = lib.mkIf config.hostSettings.desktop.niri.enable {
-        warnings = ["Niri support is not implemented yet."];
+        programs.niri.enable = true;
     };
 }

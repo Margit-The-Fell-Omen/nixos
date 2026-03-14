@@ -24,7 +24,7 @@
                     {
                         nixpkgs = {
                             config = {allowUnfree = true;};
-                            overlays = [inputs.nix-firefox-addons.overlays.default inputs.nix-cachyos-kernel.overlays.pinned];
+                            overlays = [inputs.nix-firefox-addons.overlays.default inputs.nix-cachyos-kernel.overlays.pinned inputs.niri.overlays.niri];
                         };
                     }
 
@@ -85,6 +85,10 @@
         };
         nixvim = {
             url = "github:nix-community/nixvim";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+        niri = {
+            url = "github:sodiboo/niri-flake";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         alejandra = {
