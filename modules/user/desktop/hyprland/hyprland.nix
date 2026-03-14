@@ -22,6 +22,11 @@
                     "[workspace 2 silent] $terminal"
                 ];
 
+                env = [
+                    "XDG_CURRENT_DESKTOP=Hyprland"
+                    "XDG_SESSION_DESKTOP=Hyprland"
+                ];
+
                 general = {
                     gaps_in = 5;
                     gaps_out = 8;
@@ -198,7 +203,7 @@
                     "$mainMod SHIFT, K, movewindow, u"
 
                     # power menu
-                    "$mainMod, KP_ENTER, exec, ~/.config/rofi/powermenu.sh"
+                    "$mainMod, KP_ENTER, exec, ${config.xdg.configHome}/rofi/powermenu.sh"
 
                     # screenshot
                     # just select

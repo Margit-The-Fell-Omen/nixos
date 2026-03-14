@@ -142,7 +142,7 @@
 
                     "custom/bluetooth" = {
                         format = " {}";
-                        exec = "~/.config/waybar/bluetooth-display.sh";
+                        exec = "${config.xdg.configHome}/waybar/bluetooth-display.sh";
                         interval = 10;
                         return-type = "plain";
                         tooltip = false;

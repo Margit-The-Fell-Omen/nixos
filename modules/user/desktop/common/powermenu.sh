@@ -6,7 +6,7 @@
 ## Rofi   : Power Menu
 
 # Current Theme
-theme="$HOME/.config/rofi/powermenu.rasi"
+theme="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/powermenu.rasi"
 
 # CMDs
 uptime="`uptime | awk '{gsub(/,/, "", $3); print $3; }'`"

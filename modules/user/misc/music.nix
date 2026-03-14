@@ -33,7 +33,7 @@ in {
             };
         };
 
-        home.file.".config/rmpc/themes/mine.ron".text = builtins.replaceStrings
+        xdg.configFile."rmpc/themes/mine.ron".text = builtins.replaceStrings
         [
             "@base08@"
             "@base09@"
