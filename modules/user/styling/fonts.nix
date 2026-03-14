@@ -3,11 +3,6 @@
     lib,
     ...
 }: let
-    toList = x:
-        if builtins.isList x
-        then x
-        else [x];
-
     hostFonts = osConfig.hostSettings.styling.fonts;
 in {
     config = lib.mkIf osConfig.hostSettings.styling.enable {
@@ -15,10 +10,10 @@ in {
             enable = true;
 
             defaultFonts = {
-                serif = toList hostFonts.serif.name;
-                sansSerif = toList hostFonts.sansSerif.name;
-                monospace = toList hostFonts.monospace.name;
-                emoji = toList hostFonts.emoji.name;
+                serif = [hostFonts.serif.name];
+                sansSerif = [hostFonts.sansSerif.name];
+                monospace = [hostFonts.monospace.name];
+                emoji = [hostFonts.emoji.name];
             };
         };
     };

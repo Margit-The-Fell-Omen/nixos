@@ -4,54 +4,43 @@
     pkgs,
     ...
 }: let
-    toList = x:
-        if builtins.isList x
-        then x
-        else [x];
+    cfg = config.hostSettings.styling.fonts;
 
-    fontBlock = path: opt: {
+    fontBlock = default: {
         name = lib.mkOption {
-            type = lib.types.oneOf [
-                lib.types.str
-                (lib.types.listOf lib.types.str)
-            ];
-            default = opt.defaultName;
-            description = "Font name(s) for ${path}";
+            type = lib.types.str;
+            default = default.name;
+            description = "Font name";
         };
 
         package = lib.mkOption {
-            type = lib.types.oneOf [
-                lib.types.package
-                (lib.types.listOf lib.types.package)
-            ];
-            default = opt.defaultPackage;
-            description = "Package(s) providing font(s) for ${path}";
+            type = lib.types.package;
+            default = default.package;
+            description = "Package providing font";
         };
     };
-
-    cfg = config.hostSettings.styling.fonts;
 in {
     options = {
         hostSettings = {
             styling.fonts = {
-                serif = fontBlock "serif" {
-                    defaultName = "Fira Sans";
-                    defaultPackage = pkgs.fira-sans;
+                serif = fontBlock {
+                    name = "Fira Sans";
+                    package = pkgs.fira-sans;
                 };
 
-                sansSerif = fontBlock "sans-serif" {
-                    defaultName = ["Fira Sans"];
-                    defaultPackage = [pkgs.fira-sans];
+                sansSerif = fontBlock {
+                    name = "Fira Sans";
+                    package = pkgs.fira-sans;
                 };
 
-                monospace = fontBlock "monospace" {
-                    defaultName = ["JetBrainsMono Nerd Font"];
-                    defaultPackage = [pkgs.nerd-fonts.jetbrains-mono];
+                monospace = fontBlock {
+                    name = "JetBrainsMono Nerd Font";
+                    package = pkgs.nerd-fonts.jetbrains-mono;
                 };
 
-                emoji = fontBlock "emoji" {
-                    defaultName = ["Twitter Color Emoji"];
-                    defaultPackage = [pkgs.twitter-color-emoji];
+                emoji = fontBlock {
+                    name = "Twitter Color Emoji";
+                    package = pkgs.twitter-color-emoji;
                 };
             };
         };
@@ -61,21 +50,22 @@ in {
         fonts = {
             fontconfig = {
                 enable = true;
+
                 defaultFonts = {
-                    serif = toList cfg.serif.name;
-                    sansSerif = toList cfg.sansSerif.name;
-                    monospace = toList cfg.monospace.name;
-                    emoji = toList cfg.emoji.name;
+                    serif = [cfg.serif.name];
+                    sansSerif = [cfg.sansSerif.name];
+                    monospace = [cfg.monospace.name];
+                    emoji = [cfg.emoji.name];
                 };
             };
 
-            packages = lib.concatLists [
-                (toList cfg.serif.package)
-                (toList cfg.sansSerif.package)
-                (toList cfg.monospace.package)
-                (toList cfg.emoji.package)
+            packages = [
+                cfg.serif.package
+                cfg.sansSerif.package
+                cfg.monospace.package
+                cfg.emoji.package
 
-                [pkgs.corefonts]
+                pkgs.corefonts
             ];
 
             fontDir.enable = true;

@@ -8,12 +8,12 @@
     imports = lib.attrNames (lib.filterAttrs (name: value: (value != "directory") && (name != "default.nix")) (builtins.readDir ./.));
     browsers = map (lib.removeSuffix ".nix") imports;
 
-    path =
+    applicationPath =
         if (cfg.defaultBrowser != "none")
         then cfg.${cfg.defaultBrowser}.path
         else null;
 in {
-    imports = map (import_path: ./${import_path}) imports;
+    imports = map (path: ./${path}) imports;
 
     options = {
         userSettings = {
@@ -29,11 +29,11 @@ in {
     config = lib.mkMerge (
         [
             (lib.mkIf (cfg.defaultBrowser != "none") {
-                xdg.mimeApps.defaultApplications = lib.mkIf (path != null) {
-                    "x-scheme-handler/http" = path;
-                    "x-scheme-handler/https" = path;
-                    "text/html" = path;
-                    "application/pdf" = path;
+                xdg.mimeApps.defaultApplications = lib.mkIf (applicationPath != null) {
+                    "x-scheme-handler/http" = applicationPath;
+                    "x-scheme-handler/https" = applicationPath;
+                    "text/html" = applicationPath;
+                    "application/pdf" = applicationPath;
                 };
 
                 home.sessionVariables = {

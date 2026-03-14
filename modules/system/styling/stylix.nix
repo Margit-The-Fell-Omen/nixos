@@ -8,15 +8,7 @@
 }: let
     theme = import ./../../themes/${config.hostSettings.styling.theme};
 
-    toList = x:
-        if builtins.isList x
-        then x
-        else [x];
-
-    fontCfg = config.hostSettings.styling.fonts;
-
-    pick = f: builtins.head (toList f.name);
-    pickPkg = f: builtins.head (toList f.package);
+    fonts = config.hostSettings.styling.fonts;
 in {
     options = {
         hostSettings = {
@@ -35,33 +27,35 @@ in {
     ];
 
     config = lib.mkIf config.hostSettings.styling.enable {
-        stylix.enable = true;
-        stylix.polarity = theme.polarity;
-        stylix.image =
-            if lib.isPath theme.background
-            then theme.background
-            else
-                pkgs.fetchurl {
-                    url = theme.background;
-                    hash = theme.backgroundHash;
+        stylix = {
+            enable = true;
+            polarity = theme.polarity;
+            image =
+                if lib.isPath theme.background
+                then theme.background
+                else
+                    pkgs.fetchurl {
+                        url = theme.background;
+                        hash = theme.backgroundHash;
+                    };
+            base16Scheme = theme;
+            fonts = {
+                serif = {
+                    name = fonts.serif.name;
+                    package = fonts.serif.package;
                 };
-        stylix.base16Scheme = theme;
-        stylix.fonts = {
-            serif = {
-                name = pick fontCfg.serif;
-                package = pickPkg fontCfg.serif;
-            };
-            sansSerif = {
-                name = pick fontCfg.sansSerif;
-                package = pickPkg fontCfg.sansSerif;
-            };
-            monospace = {
-                name = pick fontCfg.monospace;
-                package = pickPkg fontCfg.monospace;
-            };
-            emoji = {
-                name = pick fontCfg.emoji;
-                package = pickPkg fontCfg.emoji;
+                sansSerif = {
+                    name = fonts.sansSerif.name;
+                    package = fonts.sansSerif.package;
+                };
+                monospace = {
+                    name = fonts.monospace.name;
+                    package = fonts.monospace.package;
+                };
+                emoji = {
+                    name = fonts.emoji.name;
+                    package = fonts.emoji.package;
+                };
             };
         };
     };

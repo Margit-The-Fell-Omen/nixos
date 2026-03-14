@@ -7,15 +7,7 @@
 }: let
     theme = import ./../../themes/${osConfig.hostSettings.styling.theme};
 
-    fontCfg = osConfig.hostSettings.styling.fonts;
-
-    toList = x:
-        if builtins.isList x
-        then x
-        else [x];
-
-    pick = f: builtins.head (toList f.name);
-    pickPkg = f: builtins.head (toList f.package);
+    fonts = osConfig.hostSettings.styling.fonts;
 in {
     config = lib.mkIf osConfig.hostSettings.styling.enable {
         stylix = {
@@ -33,24 +25,24 @@ in {
             base16Scheme = theme;
             fonts = {
                 serif = {
-                    name = pick fontCfg.serif;
-                    package = pickPkg fontCfg.serif;
+                    name = fonts.serif.name;
+                    package = fonts.serif.package;
                 };
                 sansSerif = {
-                    name = pick fontCfg.sansSerif;
-                    package = pickPkg fontCfg.sansSerif;
+                    name = fonts.sansSerif.name;
+                    package = fonts.sansSerif.package;
                 };
                 monospace = {
-                    name = pick fontCfg.monospace;
-                    package = pickPkg fontCfg.monospace;
+                    name = fonts.monospace.name;
+                    package = fonts.monospace.package;
                 };
                 emoji = {
-                    name = pick fontCfg.emoji;
-                    package = pickPkg fontCfg.emoji;
+                    name = fonts.emoji.name;
+                    package = fonts.emoji.package;
                 };
             };
-        };
 
-        stylix.cursor = config.userSettings.styling.cursor;
+            cursor = config.userSettings.styling.cursor;
+        };
     };
 }

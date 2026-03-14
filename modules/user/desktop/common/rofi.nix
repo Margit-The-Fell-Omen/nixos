@@ -4,29 +4,22 @@
     osConfig,
     ...
 }: let
-    mkLiteral = config.lib.formats.rasi.mkLiteral;
-    mkRgb = color: let
-        c = config.lib.stylix.colors;
-        r = c."${color}-rgb-r";
-        g = c."${color}-rgb-g";
-        b = c."${color}-rgb-b";
-    in
-        mkLiteral "rgba(${r}, ${g}, ${b}, 100%)";
-
-    toList = x:
-        if builtins.isList x
-        then x
-        else [x];
-    font = {
-        name = builtins.head osConfig.hostSettings.styling.fonts.monospace.name;
-        size = builtins.head osConfig.hostSettings.styling.fonts.monospace.size;
-    };
+    font = osConfig.hostSettings.styling.fonts.monospace;
 in {
     config = lib.mkIf osConfig.hostSettings.desktop.enable {
         programs.rofi = {
             enable = true;
             font = "${font.name} 12";
-            theme = {
+            theme = let
+                mkLiteral = config.lib.formats.rasi.mkLiteral;
+                mkRgb = color: let
+                    c = config.lib.stylix.colors;
+                    r = c."${color}-rgb-r";
+                    g = c."${color}-rgb-g";
+                    b = c."${color}-rgb-b";
+                in
+                    mkLiteral "rgba(${r}, ${g}, ${b}, 100%)";
+            in {
                 "*" = {
                     background = mkRgb "base00";
                     lightbg = mkRgb "base01";
@@ -80,7 +73,7 @@ in {
             };
         };
 
-        # NOTE: custom implementation is needed due to stylix putting config for elements
+        # custom implementation is needed due to stylix putting config for elements
         # and some opacity stuff which breaks everything
         stylix.targets.rofi.enable = false;
     };

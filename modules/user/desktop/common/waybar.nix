@@ -1,4 +1,5 @@
 {
+    config,
     lib,
     osConfig,
     ...
@@ -195,7 +196,7 @@
                         tooltip-format = "{title}";
                         on-click = "activate";
                         on-click-middle = "close";
-                        ignore-list = ["kitty" "cava"];
+                        ignore-list = ["${config.userSettings.terminals.defaultTerminal}" "cava"];
                         markup = true;
                         "all-outputs" = false;
                     };
@@ -210,6 +211,7 @@
             executable = true;
         };
 
+        # we do our own
         stylix.targets.waybar.addCss = false;
     };
 }

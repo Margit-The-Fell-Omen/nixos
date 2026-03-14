@@ -16,11 +16,10 @@
             satty
         ];
 
-        # not strictly necessary, i don't really use it
-        # programs.yazi = {
-        #     enable = true;
-        #     shellWrapperName = "y";
-        # };
+        programs.yazi = {
+            enable = true;
+            shellWrapperName = "y";
+        };
 
         # my notification daemon of choice
         services = {
