@@ -10,7 +10,6 @@
             pkgs.cmake
             pkgs.libgcc
             pkgs.llvmPackages_20.systemLibcxxClang
-            pkgs.qtcreator
             pkgs.steam
             pkgs.libreoffice
             pkgs.jetbrains.idea
@@ -18,9 +17,17 @@
             pkgs.dosbox-staging
             pkgs.picocom
             pkgs.socat
+
             pkgs.jq
             pkgs.unrar
             pkgs.postgresql_16
+            pkgs.postman
+
+            pkgs.gcc
+            pkgs.gnumake
+            pkgs.valgrind
+            pkgs.mc
+            pkgs.tree
         ];
 
         virtualisation.docker.enable = true;
