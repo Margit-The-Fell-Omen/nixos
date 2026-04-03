@@ -121,6 +121,9 @@ in {
             hyphenDicts.en_US
 
             prismlauncher
+            android-tools
+            (pkgs.callPackage ./iriun.nix {})
+
         ];
 
         home.shellAliases = {

@@ -23,8 +23,11 @@
                 modules = [
                     {
                         nixpkgs = {
-                            config = {allowUnfree = true;};
-                            overlays = [inputs.nix-firefox-addons.overlays.default inputs.nix-cachyos-kernel.overlays.pinned inputs.niri.overlays.niri];
+                            config = {
+                                allowUnfree = true;
+                                permittedInsecurePackages = ["ciscoPacketTracer8-8.2.2"];
+                            };
+                            overlays = [inputs.nix-firefox-addons.overlays.default inputs.nix-cachyos-kernel.overlays.pinned];
                         };
                     }
 

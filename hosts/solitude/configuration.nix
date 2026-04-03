@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
     config = {
         hostSettings = {
             kernel = {
@@ -48,7 +48,7 @@
             styling = {
                 enable = true;
 
-                theme = "gruvbox-medium";
+                theme = "catppuccin-mocha";
 
                 plymouth.enable = true;
                 plymouth.theme = "arasaka";

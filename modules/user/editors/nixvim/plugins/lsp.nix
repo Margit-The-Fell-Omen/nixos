@@ -8,12 +8,12 @@
         plugins.lsp = {
             enable = true;
             servers = {
-                # superhtml.enable = true;
-                # emmet_language_server.enable = true;
-                # cssls.enable = true;
+                helm_ls.enable = true;
+                terraformls.enable = true;
+                yamlls.enable = true;
+
                 ruff.enable = true;
                 ty.enable = true;
-                terraformls.enable = true;
 
                 nixd = {
                     enable = true;
@@ -64,10 +64,10 @@
         };
         lsp = {
             servers = {
-                # superhtml.enable = true;
-                # emmet_language_server.enable = true;
-                # cssls.enable = true;
                 terraformls.enable = true;
+                helm_ls.enable = true;
+                yamlls.enable = true;
+
                 nixd.enable = true;
                 rust_analyzer.enable = true;
                 tinymist.enable = true;

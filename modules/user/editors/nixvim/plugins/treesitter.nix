@@ -51,6 +51,7 @@
                     llvm
                     linkerscript
                     terraform
+                    helm
 
                     zsh
                     proto
