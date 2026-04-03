@@ -84,6 +84,8 @@ in {
 
                     # otherwise addons are needed to be enabled manually after first install
                     # "extensions.autoDisableScopes" = 0;
+
+                    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
                 };
                 search = {
                     default = "ddg";

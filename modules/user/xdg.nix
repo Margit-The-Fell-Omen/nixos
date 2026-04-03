@@ -26,6 +26,8 @@
                 publicShare = null;
                 templates = null;
                 videos = "${config.home.homeDirectory}/media/videos";
+
+                setSessionVariables = true;
             };
         };
     };

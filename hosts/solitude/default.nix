@@ -11,7 +11,11 @@
     config = {
         home-manager.users = lib.listToAttrs (map (user: {
             name = user.name;
-            value = {imports = [./home-${user.name}.nix ../../modules/user];};
+            value = {
+                _module.args.username = user.name;
+
+                imports = [./home-${user.name}.nix ../../modules/user];
+            };
         })
         config.hostSettings.users);
 

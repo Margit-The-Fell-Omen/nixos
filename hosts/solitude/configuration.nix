@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
     config = {
         hostSettings = {
             kernel = {
@@ -70,10 +70,7 @@
             '';
 
             supergfxd.enable = true;
-            asusd = {
-                enable = true;
-                enableUserService = true;
-            };
+            asusd.enable = true;
         };
 
         system.stateVersion = "25.05";
