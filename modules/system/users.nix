@@ -30,7 +30,8 @@
                     ++ (lib.optional config.hostSettings.kernel.tty0tty.enable "dialout")
                     ++ (lib.optional config.hostSettings.gaming.enable "gamemode")
                     ++ (lib.optional config.hostSettings.virtualization.docker.enable "docker")
-                    ++ (lib.optional config.hostSettings.virtualization.libvirt.enable "libvirtd");
+                    ++ (lib.optional config.hostSettings.virtualization.libvirt.enable "libvirtd")
+                    ++ (lib.optionals config.hostSettings.iriun.enable ["video" "adbusers"]);
 
                 createHome = true;
 

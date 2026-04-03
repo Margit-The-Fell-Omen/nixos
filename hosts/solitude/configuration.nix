@@ -45,6 +45,8 @@
 
             gaming.enable = true;
 
+            iriun.enable = true;
+
             styling = {
                 enable = true;
 

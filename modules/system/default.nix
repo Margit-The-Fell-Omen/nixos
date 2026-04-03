@@ -10,6 +10,7 @@
 
         ./desktop
         ./hardware
+        ./iriun
         ./kernel
         ./sddm
         ./security
