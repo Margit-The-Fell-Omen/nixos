@@ -4,85 +4,55 @@
     pkgs,
     inputs,
     ...
-}: {
+}: let
+    quote = pkgs.stdenv.mkDerivation rec {
+        pname = "quote";
+        version = "296c0de08f9a35da05ffecb8decc5f602b54dd72";
+
+        src = pkgs.fetchFromGitHub {
+            owner = "deathlesz";
+            repo = "quote";
+            rev = version;
+            hash = "sha256-+rErlBeYMR12YJRUo3mmHuEhWpPUUVKbzf0/t5b/Cio=";
+        };
+
+        nativeBuildInputs = with pkgs; [
+            nasm
+        ];
+
+        buildPhase = ''
+            nasm -felf64 quote.a -o quote.o
+            ld quote.o -o quote
+        '';
+
+        installPhase = ''
+            runHook preInstall
+
+            mkdir -p $out/bin/
+            cp quote $out/bin/
+
+            runHook postInstall
+        '';
+    };
+in {
     config = {
-        # Here go all per-user settings
         userSettings = {
-            # Enable managing XDG stuff, you'll probably want this unless you're creating a server configuration
             xdg.enable = true;
 
-            # Enable Hyprland
-            hyprland.enable = true;
-
-            # Enable NixVim
             nixvim.enable = true;
 
-            # Use zsh by default
-            shells.defaultShell = "zsh";
-
-            # Enable zsh (technically not needed, as the declaration above will automatically set this to true)
-            shells.zsh.enable = true;
-
-            # Use Firefox by default
             browsers.defaultBrowser = "firefox";
-
-            # Enable Firefox (also technically not needed)
             browsers.firefox.enable = true;
 
-            # Use kitty by default
             terminals.defaultTerminal = "kitty";
-
-            # Enable kitty (you see the pattern, hopefully)
             terminals.kitty.enable = true;
 
-            # Enable various security-related features, like GPG, SSH
             security.enable = true;
-
-            # Enable git (duh...)
             git.enable = true;
 
-            # Styling stuff! (again?..)
-            styling = {
-                # Enable per-user styling with Stylix
-                enable = true;
-
-                # Theme to use (optional, is inherited from host-wide configuration)
-                theme = "signalis";
-
-                # Set cursor theme (optional)
-                cursor = {
-                    name = "Quintom_Snow";
-                    package = pkgs.quintom-cursor-theme;
-                    size = 24;
-                };
-
-                # Set fonts (optional, is inherited from host-wide configuration)
-                # font = {
-                #     serif = {
-                #         name = "Fira Sans";
-                #         package = pkgs.fira-sans;
-                #     };
-                #     sansSerif = {
-                #         name = "Fira Sans";
-                #         package = pkgs.fira-sans;
-                #     };
-                #     monospace = {
-                #         name = "JetBrainsMono Nerd Font";
-                #         package = pkgs.nerd-fonts.jetbrains-mono;
-                #     };
-                #     emoji = {
-                #         name = "Twitter Color Emoji";
-                #         package = pkgs.twitter-color-emoji;
-                #     };
-                # };
-            };
-
-            # Miscellaneous programs and stuff (see declaration in `../../modules/user/misc/default.nix`)
             misc.enable = true;
         };
 
-        # Set monitor configuration for Hyprland
-        # You'll probably want this if you're using it
         wayland.windowManager.hyprland.settings = {
             monitor = [
                 "DP-1, 2560x1440@165, 0x0, 1"
@@ -90,32 +60,20 @@
             ];
         };
 
+        programs.obsidian.enable = true;
+
         programs.git = {
             enable = true;
             userName = "Ushki";
             userEmail = "wartim9494@gmail.com";
         };
-        # Example Git configuration
-        # programs.git = {
-        #    settings.user = {
-        #        name = "Ushki";
-        #         email = "wartim9494@gmail.com";
-        #    };
-        #
-        #     signing = {
-        #         key = "YOURSIGNINGKEYGOESHERE";
-        #         signByDefault = true;
-        #     };
-        #  };
 
-        # Example aliases
-        # home.shellAliases = {
-        #     ls = "eza --color=always";
-        #     cat = "bat";
-        #     ".." = "cd ..";
-        # };
+        programs = {
+            zsh.initContent = lib.mkAfter ''
+                ${quote}/bin/quote
+            '';
+        };
 
-        # IMPORTANT: do not change
         home.stateVersion = "25.05";
     };
 }
