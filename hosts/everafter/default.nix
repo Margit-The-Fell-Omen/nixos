@@ -9,9 +9,13 @@
     ];
 
     config = {
-        home-manager.users = lib.listToAttrs (map (username: {
-            name = username;
-            value = {imports = [./home.nix ../../modules/user];};
+        home-manager.users = lib.listToAttrs (map (user: {
+            name = user.name;
+            value = {
+                _module.args.username = user.name;
+
+                imports = [./home.nix ../../modules/user];
+            };
         })
         config.hostSettings.users);
 

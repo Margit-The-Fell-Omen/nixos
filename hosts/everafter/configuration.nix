@@ -1,20 +1,27 @@
-{
-    config,
-    lib,
-    pkgs,
-    ...
-}: {
+{...}: {
     config = {
         hostSettings = {
-            users = ["deathlesz"];
-            adminUsers = ["deathlesz"];
+            # Users to create on the machine
+            #
+            # `isAdmin = true` grants the user `sudo` privileges (i.e. adds them to the `wheel` group)
+            users = [
+                {
+                    name = "deathlesz";
+                    isAdmin = true;
+                }
+            ];
 
-            graphics.enable = true;
-            graphics.virtio.enable = true;
-            # bluetooth.enable = true;
+            hardware = {
+                graphics.virtio.enable = true;
 
-            pipewire.enable = true;
-            hyprland.enable = true;
+                # bluetooth.enable = true;
+            };
+
+            # Enable audio through Pipewire
+            audio.enable = true;
+
+            desktop.hyprland.enable = true;
+
             sddm.enable = true;
 
             styling = {
