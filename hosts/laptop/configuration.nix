@@ -14,9 +14,6 @@
             pkgs.steam
         ];
 
-        virtualisation.docker.enable = true;
-        users.users.ushki.extraGroups = ["docker"];
-
         # 1. Allow unfree packages (Steam is proprietary)
         nixpkgs.config.allowUnfree = true;
 
@@ -30,38 +27,50 @@
         };
 
         hardware.nvidia-container-toolkit.enable = lib.mkForce false;
+
         hostSettings = {
             # Users to create on the machine (you will need to create `home-{username}.nix` files for each such user)
-            users = ["ushki"];
+            #
+            # `isAdmin = true` grants the user `sudo` privileges (i.e. adds them to the `wheel` group)
+            users = [
+                {
+                    name = "ushki";
+                    isAdmin = true;
+                }
+            ];
 
-            # Users to grant admin (i.e. `sudo`) privileges
-            adminUsers = ["ushki"];
+            hardware = {
+                graphics = {
+                    # Enable nVidia GPU support
+                    nvidia.enable = false;
 
-            # Enable graphics support
-            graphics.enable = true;
+                    # Enable AMD GPU support
+                    amd.enable = true;
+                };
 
-            # Enable nVidia GPU support
-            graphics.nvidia.enable = false;
+                # Configure various laptop-related features, like nVidia Prime
+                # If you enable this and you have a dual GPU setup with nVidia
+                # You must set `hardware.nvidia.prime.{nvidiaBusId,amdgpuBusId,intelBusId}` to appropriate values
+                #
+                # NOTE: this is a laptop, so you probably want this enabled
+                # it also installs `brightnessctl` for screen brightness control
+                laptop.enable = false;
 
-            # Enable AMD GPU support
-            graphics.amd.enable = true;
+                # Enable Bluetooth support
+                bluetooth.enable = true;
+            };
 
-            # Configure various laptop-related features, like nVidia Prime
-            # If you enable this and you have a dual GPU setup with nVidia
-            # You must set `hardware.nvidia.prime.{nvidiaBusId,amdgpuBusId,intelBusId}` to appropriate values
-            laptop.enable = false;
-
-            # Enable Bluetooth support
-            bluetooth.enable = true;
-
-            # Enable audio through pipewirte
-            pipewire.enable = true;
+            # Enable audio through pipewire
+            audio.enable = true;
 
             # Enable host-wide Hyprland settings (is required to enable on per-user basis)
-            hyprland.enable = true;
+            desktop.hyprland.enable = true;
 
             # Enable SDDM
             sddm.enable = true;
+
+            # Enable Docker (also adds every user above to the `docker` group)
+            virtualization.docker.enable = true;
 
             # Styling-related features
             styling = {

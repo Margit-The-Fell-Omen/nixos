@@ -8,7 +8,7 @@
         # Here you set all the (host/system)-wide settings
         hostSettings = {
             # Configure CachyOS kernel
-            cachy = {
+            kernel.cachy = {
                 # Enable it
                 enable = true;
 
@@ -21,47 +21,54 @@
             };
 
             # Users to create on the machine (you will need to create `home-{username}.nix` files for each such user)
-            users = ["username"];
-
-            # Users to grant admin (i.e. `sudo`) privileges
-            adminUsers = ["username"];
+            #
+            # `isAdmin = true` grants the user `sudo` privileges (i.e. adds them to the `wheel` group)
+            users = [
+                {
+                    name = "username";
+                    isAdmin = true;
+                }
+            ];
 
             security = {
                 # replace sudo with sudo-rs
                 sudo-rs.enable = true;
             };
 
-            # Enable graphics support
-            graphics.enable = true;
+            hardware = {
+                graphics = {
+                    # Enable nVidia GPU support
+                    nvidia.enable = true;
 
-            # Enable nVidia GPU support
-            graphics.nvidia.enable = true;
+                    # Enable AMD GPU support
+                    amd.enable = true;
+                };
 
-            # Enable AMD GPU support
-            graphics.amd.enable = true;
+                # Configure various laptop-related features, like nVidia Prime
+                # If you enable this and you have a dual GPU setup with nVidia
+                # You must set `hardware.nvidia.prime.{nvidiaBusId,amdgpuBusId,intelBusId}` to appropriate values
+                laptop.enable = true;
 
-            # Configure various laptop-related features, like nVidia Prime
-            # If you enable this and you have a dual GPU setup with nVidia
-            # You must set `hardware.nvidia.prime.{nvidiaBusId,amdgpuBusId,intelBusId}` to appropriate values
-            laptop.enable = true;
-
-            # Enable Bluetooth support
-            bluetooth.enable = true;
+                # Enable Bluetooth support
+                bluetooth.enable = true;
+            };
 
             # Enable audio through Pipewire
-            pipewire.enable = true;
+            audio.enable = true;
 
             # Enable host-wide Hyprland settings (is required to enable on per-user basis)
-            hyprland.enable = true;
+            desktop.hyprland.enable = true;
 
             # Enable SDDM
             sddm.enable = true;
 
-            # Enable Docker
-            docker.enable = true;
+            virtualization = {
+                # Enable Docker
+                docker.enable = true;
 
-            # Enable virtualization
-            virtualization.enable = true;
+                # Enable libvirt
+                libvirt.enable = true;
+            };
 
             # Enable Mullvad VPN
             mullvad.enable = true;
