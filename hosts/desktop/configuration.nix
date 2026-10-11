@@ -12,6 +12,7 @@
             pkgs.steam
             pkgs.libreoffice
             pkgs.jetbrains.idea
+            pkgs.opencode
 
             # АПК
             pkgs.dosbox-staging
@@ -25,15 +26,19 @@
             pkgs.redis
             pkgs.google-cloud-sdk
 
+            # communication
             pkgs.discord
+            pkgs.telegram-desktop
 
-            # ОСиСП
+            # system programming
             pkgs.gcc
             pkgs.gnumake
             pkgs.valgrind
             pkgs.mc
             pkgs.tree
             pkgs.unixtools.netstat
+            pkgs.hyphenDicts.ru_RU
+            pkgs.lftp
         ];
 
         virtualisation.docker.enable = true;
@@ -50,16 +55,6 @@
         hardware.nvidia-container-toolkit.enable = lib.mkForce false;
 
         hostSettings = {
-            kernel = {
-                cachy = {
-                    enable = true;
-                    variant = "lto";
-                    arch = "x86_64-v3";
-                };
-
-                tty0tty.enable = true;
-            };
-
             users = [
                 {
                     name = "ushki";
